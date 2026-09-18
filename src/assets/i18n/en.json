@@ -36,6 +36,7 @@
     "abuDhabiBranch": "Abu Dhabi",
     "contact": "Contact Us",
     "home": "Home",
+    "menu": "Menu",
     "guide": "Parents Guide",
     "policy_cultural": "Cultural Considerations",
     "policy_child": "Child Protection",
@@ -360,6 +361,7 @@
       "cta": "Open platform",
       "body": "TinkerCAD also supports circuit programming via Arduino using blocks or text code, making electronic programming easy even for beginners — a powerful tool for learning electronics, programming, and smart-system control basics."
     },
+
     "pisa": {
       "title": "PISA Exam",
       "breadcrumb_current": "PISA Exam",
@@ -445,6 +447,25 @@
       "mock": "Mock exams",
       "mock_exam": "Mock exam",
       "practice": "Practice"
+    },
+    "pirls": {
+      "title": "PIRLS Exam",
+      "breadcrumb_current": "PIRLS Exam",
+      "heading": "PIRLS Exam",
+      "desc_title": "Progress in International Reading Literacy Study (PIRLS)",
+      "desc_text": "An international assessment held every five years to measure reading comprehension trends among Grade 4 students.",
+      "moe_note": "The ministerial section exam is delivered in Arabic.",
+      "ame_note": "The American section exam is delivered in English.",
+      "moe_title": "Ministry of Education Curriculum (MOE)",
+      "ame_title": "American Curriculum (AME)",
+      "moe_link1": "ADEK Training",
+      "moe_link2": "Training 1",
+      "moe_link3": "Training 2",
+      "moe_link4": "Training 3",
+      "ame_link1": "ADEK Platform",
+      "ame_link2": "Practical Training 1",
+      "ame_link3": "Practical Training 2",
+      "ame_link4": "Practical Training 3"
     }
   }
 }

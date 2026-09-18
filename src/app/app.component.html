@@ -1,8 +1,6 @@
-
-
-<app-main-banner (PageEvent)="setPage($event)" ></app-main-banner>
+<app-main-banner (PageEvent)="setPage($event)"></app-main-banner>
 <div [ngSwitch]="Page">
-  <app-main *ngSwitchCase="'main'" (parentFun)='setPage(Page)'></app-main>
+  <app-main *ngSwitchCase="'main'" (parentFun)="setPage(Page)"></app-main>
   <app-contact *ngSwitchCase="'contact'"></app-contact>
   <app-graduates *ngSwitchCase="'grads'"></app-graduates>
   <app-principal-word *ngSwitchCase="'principalWord'"></app-principal-word>
@@ -17,12 +15,18 @@
   <app-pisa *ngSwitchCase="'PISA'"></app-pisa>
   <app-timss *ngSwitchCase="'TIMSS'"></app-timss>
   <app-map *ngSwitchCase="'MAP'"></app-map>
-  <app-main-national-id  (PageEvent)="setPage($event)" *ngSwitchCase="'NationalID'"></app-main-national-id>
+  <app-pirls *ngSwitchCase="'PIRLS'"></app-pirls>
+  <app-main-national-id
+    (PageEvent)="setPage($event)"
+    *ngSwitchCase="'NationalID'"
+  ></app-main-national-id>
   <app-arabic *ngSwitchCase="'Arabic'"></app-arabic>
   <app-heritage *ngSwitchCase="'Heritage'"></app-heritage>
   <app-history *ngSwitchCase="'History'"></app-history>
   <app-compassion *ngSwitchCase="'Compassion'"></app-compassion>
-  <app-global-understanding *ngSwitchCase="'GlobalUnderstanding'"></app-global-understanding>
+  <app-global-understanding
+    *ngSwitchCase="'GlobalUnderstanding'"
+  ></app-global-understanding>
   <app-respect *ngSwitchCase="'Respect'"></app-respect>
   <app-belonging *ngSwitchCase="'Belonging'"></app-belonging>
   <app-conservation *ngSwitchCase="'Conservation'"></app-conservation>
@@ -36,11 +40,13 @@
   <app-madrasa *ngSwitchCase="'Madrasa'"></app-madrasa>
   <app-requirements *ngSwitchCase="'Requirements'"></app-requirements>
   <app-gifted *ngSwitchCase="'Gifted'"></app-gifted>
-  <app-arabic-reading-challenge *ngSwitchCase="'ArabicReadingChallenge'"></app-arabic-reading-challenge>
+  <app-arabic-reading-challenge
+    *ngSwitchCase="'ArabicReadingChallenge'"
+  ></app-arabic-reading-challenge>
   <app-ich *ngSwitchCase="'ICH'"></app-ich>
-<app-qubits *ngSwitchCase="'Qubits'"></app-qubits>
-<app-e-library *ngSwitchCase="'E-Library'"></app-e-library>
-<app-matific *ngSwitchCase="'Matific'"></app-matific>
-<app-mock-exams *ngSwitchCase="'MockExams'"></app-mock-exams>
+  <app-qubits *ngSwitchCase="'Qubits'"></app-qubits>
+  <app-e-library *ngSwitchCase="'E-Library'"></app-e-library>
+  <app-matific *ngSwitchCase="'Matific'"></app-matific>
+  <app-mock-exams *ngSwitchCase="'MockExams'"></app-mock-exams>
 </div>
 <!-- <app-footer></app-footer> -->

@@ -22,6 +22,11 @@ html[dir='ltr'] body {
   font-family: 'Poppins', 'Raleway', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
 }
 
+/* Lock page scroll while the mobile side-drawer is open. */
+body.mobile-menu-open {
+  overflow: hidden;
+}
+
 /* Isolate Latin/numbers (phones, emails, LMS/PISA/TIMSS) inside RTL text. */
 .ltr-isolate {
   direction: ltr;

@@ -143,28 +143,480 @@ header {
   justify-content: center;
 }
 
-/* ---------- Collapsed (mobile/tablet) menu ---------- */
+/* ---------- Mobile drawer (Image 2 target) + desktop menu switch ---------- */
+.drawer-backdrop,
+.drawer-menu {
+  display: none;
+}
+
 @media (max-width: 1199.98px) {
-  #primaryNavbar {
+  .desktop-menu {
+    display: none !important;
+  }
+
+  /* Header language toggle is hidden whenever the burger menu is active;
+     mobile language switching lives in the drawer footer. */
+  .lang-toggle {
+    display: none !important;
+  }
+
+  .navbar-brand .sitename {
+    max-inline-size: none;
+  }
+
+  /* Dim backdrop — no backdrop-filter here: blurring every frame
+     while it fades is the classic mobile close-jank culprit. */
+  .drawer-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 1040;
+    background: rgba(15, 20, 42, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.2s ease, visibility 0s linear 0.2s;
+  }
+
+  .drawer-backdrop.open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition: opacity 0.25s ease, visibility 0s linear 0s;
+  }
+
+  /* Sheet — docked to the inline-start side: right in RTL, left in LTR.
+     Hidden-state transforms live under :not(.open), so the .open rule
+     always wins regardless of document direction (no specificity war). */
+  .drawer-menu {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    inset-inline-start: 0;
+    z-index: 1050;
+    width: min(22rem, calc(100vw - 3rem));
+    max-height: 100dvh;
     background: #fff;
-    border-radius: 12px;
-    padding: 0.75rem;
-    margin-block-start: 0.5rem;
-    box-shadow: 0 12px 32px rgba(20, 30, 70, 0.12);
+    border-start-start-radius: 0;
+    border-start-end-radius: 20px;
+    border-end-start-radius: 0;
+    border-end-end-radius: 20px;
+    visibility: hidden;
+    /* Fast exit on base; the slower enter curve lives on .open below. */
+    will-change: transform;
+    transition: transform 0.2s cubic-bezier(0.3, 0.7, 0.3, 1), visibility 0s linear 0.2s;
+    overflow: hidden;
+    overscroll-behavior: contain;
   }
 
-  .navbar-nav {
-    gap: 0.15rem;
+  html[dir="rtl"] .drawer-menu {
+    box-shadow: -16px 0 48px rgba(15, 22, 60, 0.25);
   }
 
-  .navbar-nav .nav-link {
+  html[dir="ltr"] .drawer-menu {
+    box-shadow: 16px 0 48px rgba(15, 22, 60, 0.25);
+  }
+
+  html[dir="rtl"] .drawer-menu:not(.open) {
+    transform: translateX(105%);
+  }
+
+  html[dir="ltr"] .drawer-menu:not(.open) {
+    transform: translateX(-105%);
+  }
+
+  .drawer-menu.open {
+    transform: translateX(0);
+    visibility: visible;
+    transition: transform 0.3s cubic-bezier(0.32, 0.72, 0, 1), visibility 0s linear 0s;
+  }
+
+  .drawer-menu.scrolled .drawer-close-row {
+    box-shadow: 0 1px 12px rgba(20, 30, 70, 0.1);
+  }
+
+  /* Sticky header: title + circular close */
+  .drawer-close-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding-block: 0.7rem;
+    padding-inline-start: 1rem;
+    padding-inline-end: 1.25rem;
+    padding-block-start: max(0.7rem, env(safe-area-inset-top));
+    border-bottom: 1px solid #eef0f4;
+    /* Solid (no backdrop-filter): blur here forces a backdrop re-sample
+       on every frame of the slide animation. */
+    background: #fff;
+    flex-shrink: 0;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+  }
+
+  .drawer-menu-title {
+    font-size: 1rem;
+    font-weight: 800;
+    color: #1a2340;
+    letter-spacing: 0.1px;
+  }
+
+  .drawer-close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    inline-size: 2.5rem;
+    block-size: 2.5rem;
+    border-radius: 50%;
+    background: #f1f2f6;
+    border: 0;
+    color: #1a2340;
+    cursor: pointer;
+    transition: background-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
+  }
+
+  .drawer-close:hover {
+    background: #e4e7f5;
+    color: #2438ff;
+  }
+
+  .drawer-close:active {
+    transform: scale(0.94);
+  }
+
+  .drawer-list {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    flex: 1;
+    padding: 0.5rem 0.75rem 1rem;
+    scrollbar-width: thin;
+    scrollbar-color: #d3d8e2 transparent;
+  }
+
+  .drawer-list::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  .drawer-list::-webkit-scrollbar-thumb {
+    background: #d3d8e2;
+    border-radius: 999px;
+  }
+
+  .drawer-list::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .drawer-group {
+    border: 0;
+    border-radius: 14px;
+    margin-block-end: 2px;
+  }
+
+  .drawer-group.expanded {
+    background: #f4f6fb;
+  }
+
+  /* Top-level rows: 52px touch target, inset dividers */
+  .drawer-row {
     inline-size: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    min-block-size: 3.25rem;
+    padding: 0.8rem 0.75rem;
+    margin-inline: 0;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid #eef0f4;
+    border-radius: 10px;
+    font-size: 0.98rem;
+    font-weight: 700;
+    color: #1b1e28;
     text-align: start;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.15s ease, color 0.15s ease;
+  }
+
+  .drawer-group:last-of-type .drawer-row,
+  .drawer-row.single {
+    border-bottom: 0;
+  }
+
+  .drawer-row:hover {
+    background: #eef0ff;
+  }
+
+  .drawer-row:active {
+    transform: scale(0.99);
+  }
+
+  .drawer-group.expanded > .drawer-row {
+    border-bottom-color: transparent;
+    color: #2438ff;
+  }
+
+  .drawer-row.single {
+    font-weight: 700;
+    border-bottom: 1px solid #eef0f4;
+  }
+
+  .drawer-row.single.link {
+    color: #1b1e28;
+  }
+
+  /* Circular plus badge that morphs into × */
+  .drawer-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    inline-size: 1.65rem;
+    block-size: 1.65rem;
+    border-radius: 50%;
+    border: 1.5px solid #dfe3ec;
+    background: #fff;
+    flex-shrink: 0;
+    transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.25s ease;
+  }
+
+  .drawer-icon.sm {
+    inline-size: 1.45rem;
+    block-size: 1.45rem;
+  }
+
+  .drawer-icon .plus {
+    display: block;
+    position: relative;
+    inline-size: 0.6rem;
+    block-size: 0.6rem;
+    flex-shrink: 0;
+    transition: transform 0.25s ease;
+  }
+
+  .drawer-icon.sm .plus {
+    inline-size: 0.5rem;
+    block-size: 0.5rem;
+  }
+
+  .drawer-icon .plus::before,
+  .drawer-icon .plus::after {
+    content: "";
+    position: absolute;
+    background: #5b6472;
+    border-radius: 2px;
+    transition: background-color 0.2s ease;
+  }
+
+  /* Physical centering (badge is symmetric, so identical in RTL/LTR) */
+  .drawer-icon .plus::before {
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 1.8px;
+    margin-top: -0.9px;
+  }
+
+  .drawer-icon .plus::after {
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 1.8px;
+    margin-left: -0.9px;
+  }
+
+  .drawer-icon.active {
+    background: #2438ff;
+    border-color: #2438ff;
+  }
+
+  .drawer-icon.active .plus {
+    transform: rotate(135deg);
+  }
+
+  .drawer-icon.active .plus::before,
+  .drawer-icon.active .plus::after {
+    background: #fff;
+  }
+
+  /* Expanded bodies: soft panel + white leaf cards (no zebra) */
+  .drawer-body {
+    background: transparent;
+    border-top: 0;
+    padding: 0.15rem 0.35rem 0.7rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+    animation: drawer-in 0.22s ease;
+  }
+
+  .drawer-leaf {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    inline-size: 100%;
+    min-block-size: 2.75rem;
+    padding: 0.65rem 1rem;
+    background: #fff;
+    border: 1px solid #e7eaf1;
+    border-radius: 14px;
+    box-shadow: 0 1px 3px rgba(16, 24, 64, 0.05);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #333a4b;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: border-color 0.15s ease, color 0.15s ease, background-color 0.15s ease;
+  }
+
+  .drawer-leaf:hover,
+  .drawer-leaf:focus-visible {
+    border-color: #c3cbff;
+    color: #2438ff;
+    background: #f5f7ff;
+  }
+
+  .drawer-leaf:active {
+    transform: scale(0.99);
+  }
+
+  .drawer-leaf.small {
+    font-size: 0.85rem;
+  }
+
+  .drawer-subhead {
+    padding: 0.55rem 0.5rem 0.1rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    color: #8a93a8;
+    text-align: center;
+  }
+
+  .drawer-row.nested {
+    background: #f8faff;
+    border: 1px solid #e2e8f8;
+    border-radius: 14px;
+    box-shadow: 0 1px 3px rgba(36, 56, 255, 0.06);
+    font-size: 0.9rem;
+    font-weight: 700;
+    min-block-size: 2.9rem;
+    margin-block-start: 0.25rem;
+  }
+
+  .drawer-row.nested:hover {
+    border-color: #c3cbff;
+  }
+
+  .drawer-subbody {
+    background: transparent;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+    animation: drawer-in 0.22s ease;
+  }
+
+  .drawer-subbody .drawer-leaf {
+    background: #fff;
+  }
+
+  /* Sticky footer with safe-area */
+  .drawer-foot {
+    padding: 0.75rem 1rem max(0.9rem, env(safe-area-inset-bottom));
+    border-top: 1px solid #eef0f4;
+    background: #fff;
+    box-shadow: 0 -1px 12px rgba(20, 30, 70, 0.06);
+    flex-shrink: 0;
+  }
+
+  .drawer-foot .btn {
+    border-radius: 999px;
+    font-weight: 700;
+    min-block-size: 2.75rem;
+  }
+
+  /* Focus visibility for keyboard users */
+  .drawer-row:focus-visible,
+  .drawer-leaf:focus-visible,
+  .drawer-close:focus-visible {
+    outline: 2px solid #2438ff;
+    outline-offset: 2px;
+  }
+
+  @keyframes drawer-in {
+    from {
+      opacity: 0;
+      transform: translateY(-4px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Gentle stagger so cards cascade in on expand */
+  .drawer-body > *,
+  .drawer-subbody > * {
+    animation: drawer-in 0.25s ease backwards;
+  }
+
+  .drawer-body > *:nth-child(2),
+  .drawer-subbody > *:nth-child(2) {
+    animation-delay: 0.03s;
+  }
+
+  .drawer-body > *:nth-child(3),
+  .drawer-subbody > *:nth-child(3) {
+    animation-delay: 0.06s;
+  }
+
+  .drawer-body > *:nth-child(4),
+  .drawer-subbody > *:nth-child(4) {
+    animation-delay: 0.09s;
+  }
+
+  .drawer-body > *:nth-child(n + 5),
+  .drawer-subbody > *:nth-child(n + 5) {
+    animation-delay: 0.12s;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .drawer-menu,
+    .drawer-backdrop,
+    .drawer-icon,
+    .drawer-icon .plus {
+      transition: none;
+    }
+
+    .drawer-body,
+    .drawer-subbody {
+      animation: none;
+    }
   }
 }
 
 /* ---------- Desktop dropdown scroll + mid-screen fit ---------- */
 @media (min-width: 1200px) {
+  .drawer-backdrop,
+  .drawer-menu {
+    display: none !important;
+  }
+
+  .desktop-menu {
+    display: flex !important;
+    flex-basis: auto;
+  }
+
+  .lang-toggle {
+    display: inline-flex !important;
+  }
+
   .navbar-nav .dropdown-menu {
     max-block-size: 70vh;
     overflow-y: auto;

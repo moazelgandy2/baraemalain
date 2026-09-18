@@ -51,3 +51,15 @@ coverage/
 
 # Misc
 *.log
+
+# Large binary assets
+# Keep large documents and media out of Git; use Git LFS or external storage.
+*.mp4
+*.mov
+*.avi
+*.mkv
+*.webm
+*.pdf
+*.rar
+*.zip
+*.7z

@@ -171,18 +171,20 @@ header {
     position: fixed;
     inset: 0;
     z-index: 1040;
-    background: rgba(15, 20, 42, 0.5);
+    background: rgba(15, 20, 42, 0.45);
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    transition: opacity 0.2s ease, visibility 0s linear 0.2s;
+    touch-action: manipulation;
+    will-change: opacity;
+    transition: opacity 0.18s ease-in, visibility 0s linear 0.18s;
   }
 
   .drawer-backdrop.open {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
-    transition: opacity 0.25s ease, visibility 0s linear 0s;
+    transition: opacity 0.22s ease-out, visibility 0s linear 0s;
   }
 
   /* Sheet — docked to the inline-start side: right in RTL, left in LTR.
@@ -204,33 +206,33 @@ header {
     border-end-start-radius: 0;
     border-end-end-radius: 20px;
     visibility: hidden;
-    /* Fast exit on base; the slower enter curve lives on .open below. */
+    contain: paint;
     will-change: transform;
-    transition: transform 0.2s cubic-bezier(0.3, 0.7, 0.3, 1), visibility 0s linear 0.2s;
+    /* Default off-screen state (RTL +105%) */
+    transform: translate3d(105%, 0, 0);
+    box-shadow: -12px 0 36px rgba(15, 22, 60, 0.18);
+    /* Snappy exit transition */
+    transition: transform 0.18s cubic-bezier(0.32, 0, 0.67, 0), visibility 0s linear 0.18s;
     overflow: hidden;
     overscroll-behavior: contain;
   }
 
-  html[dir="rtl"] .drawer-menu {
-    box-shadow: -16px 0 48px rgba(15, 22, 60, 0.25);
+  :host-context([dir="ltr"]) .drawer-menu {
+    /* Off-screen for LTR (slide left -105%) */
+    transform: translate3d(-105%, 0, 0);
+    box-shadow: 12px 0 36px rgba(15, 22, 60, 0.18);
   }
 
-  html[dir="ltr"] .drawer-menu {
-    box-shadow: 16px 0 48px rgba(15, 22, 60, 0.25);
-  }
-
-  html[dir="rtl"] .drawer-menu:not(.open) {
-    transform: translateX(105%);
-  }
-
-  html[dir="ltr"] .drawer-menu:not(.open) {
-    transform: translateX(-105%);
+  :host-context([dir="rtl"]) .drawer-menu {
+    transform: translate3d(105%, 0, 0);
+    box-shadow: -12px 0 36px rgba(15, 22, 60, 0.18);
   }
 
   .drawer-menu.open {
-    transform: translateX(0);
-    visibility: visible;
-    transition: transform 0.3s cubic-bezier(0.32, 0.72, 0, 1), visibility 0s linear 0s;
+    transform: translate3d(0, 0, 0) !important;
+    visibility: visible !important;
+    /* Smooth iOS spring entry curve */
+    transition: transform 0.24s cubic-bezier(0.16, 1, 0.3, 1), visibility 0s linear 0s !important;
   }
 
   .drawer-menu.scrolled .drawer-close-row {
@@ -268,14 +270,16 @@ header {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    inline-size: 2.5rem;
-    block-size: 2.5rem;
+    inline-size: 2.75rem;
+    block-size: 2.75rem;
     border-radius: 50%;
     background: #f1f2f6;
     border: 0;
     color: #1a2340;
     cursor: pointer;
-    transition: background-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    transition: background-color 0.12s ease, color 0.12s ease, transform 0.12s ease;
   }
 
   .drawer-close:hover {
@@ -284,7 +288,12 @@ header {
   }
 
   .drawer-close:active {
-    transform: scale(0.94);
+    transform: scale(0.9);
+    background: #d8dcee;
+  }
+
+  .drawer-close svg {
+    pointer-events: none;
   }
 
   .drawer-list {
@@ -339,6 +348,8 @@ header {
     text-align: start;
     text-decoration: none;
     cursor: pointer;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
     transition: background-color 0.15s ease, color 0.15s ease;
   }
 

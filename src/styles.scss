@@ -33,3 +33,16 @@ body.mobile-menu-open {
   unicode-bidi: isolate;
   display: inline-block;
 }
+
+/* Global mobile drawer slide transforms (unscoped by Angular) */
+html[dir='rtl'] .drawer-menu:not(.open) {
+  transform: translate3d(105%, 0, 0) !important;
+}
+
+html[dir='ltr'] .drawer-menu:not(.open) {
+  transform: translate3d(-105%, 0, 0) !important;
+}
+
+.drawer-menu.open {
+  transform: translate3d(0, 0, 0) !important;
+}

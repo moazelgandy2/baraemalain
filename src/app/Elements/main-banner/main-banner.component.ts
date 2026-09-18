@@ -3,6 +3,7 @@ import {
   EventEmitter,
   HostListener,
   Inject,
+  OnDestroy,
   Output,
 } from "@angular/core";
 import { DOCUMENT } from "@angular/common";
@@ -24,7 +25,7 @@ export interface NavPage {
   templateUrl: "./main-banner.component.html",
   styleUrl: "./main-banner.component.scss",
 })
-export class MainBannerComponent {
+export class MainBannerComponent implements OnDestroy {
   @Output() PageEvent = new EventEmitter<string>();
   isNavbarCollapsed = true;
 
@@ -174,22 +175,32 @@ export class MainBannerComponent {
   }
 
   closeMenu(): void {
-    // Phase 1 (this frame): start the slide-out immediately so the tap
-    // feels instant. Phase 2 (after exit): tear down accordion DOM, so
-    // *ngIf destruction never competes with the animation's first frames.
+    // Phase 1 (Frame 0): Trigger the slide-out immediately on the GPU.
+    // Keep body.mobile-menu-open active during the 200ms slide-out so that
+    // synchronous body overflow layout recalculation and AOS scroll triggers
+    // never block the main thread or drop frames during animation.
     this.isNavbarCollapsed = true;
-    this.document.body?.classList.remove("mobile-menu-open");
     if (this.drawerResetTimer) {
       clearTimeout(this.drawerResetTimer);
     }
+    // Phase 2 (After exit completes): Unlock body scroll and clean up accordion DOM.
     this.drawerResetTimer = setTimeout(() => {
       this.drawerResetTimer = null;
       if (this.isNavbarCollapsed) {
+        this.document.body?.classList.remove("mobile-menu-open");
         this.openSection = null;
         this.openSub = null;
         this.listScrolled = false;
       }
-    }, 220);
+    }, 200);
+  }
+
+  ngOnDestroy(): void {
+    if (this.drawerResetTimer) {
+      clearTimeout(this.drawerResetTimer);
+      this.drawerResetTimer = null;
+    }
+    this.document.body?.classList.remove("mobile-menu-open");
   }
 
   toggleLang(): void {

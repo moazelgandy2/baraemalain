@@ -121,12 +121,12 @@
                 rel="noopener"
                 >{{ "nav.calendar" | translate }}</a
               >
-              <a
+              <button
+                type="button"
                 class="dropdown-item"
-                href="assets/Files/الدليل الإرشادي لأولياء الأمور 2026-2027.pdf"
-                target="_blank"
-                rel="noopener"
-                >{{ "nav.guide" | translate }} 2026-2027</a
+                ngbDropdownItem
+                (click)="ChangePage('guide')"
+                >{{ "nav.guide" | translate }} 2026-2027</button
               >
             </div>
           </li>
@@ -448,13 +448,11 @@
             (click)="closeMenu()"
             >{{ "nav.calendar" | translate }}</a
           >
-          <a
+          <button
+            type="button"
             class="drawer-leaf"
-            href="assets/Files/الدليل الإرشادي لأولياء الأمور 2026-2027.pdf"
-            target="_blank"
-            rel="noopener"
-            (click)="closeMenu()"
-            >{{ "nav.guide" | translate }} 2026-2027</a
+            (click)="ChangePage('guide')"
+            >{{ "nav.guide" | translate }} 2026-2027</button
           >
         </div>
       </div>

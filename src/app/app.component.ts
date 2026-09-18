@@ -1,18 +1,20 @@
-import { Component, Inject, OnInit, AfterViewInit } from "@angular/core";
+import { Component, Inject, OnInit, AfterViewInit, OnDestroy } from "@angular/core";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { DOCUMENT } from "@angular/common";
 import * as AOS from "aos";
-import { Router } from "@angular/router";
+import { NavigationEnd, Router } from "@angular/router";
 import { LanguageService } from "./core/language.service";
+import { Subscription, filter } from "rxjs";
 
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
   styleUrl: "./app.component.scss",
 })
-export class AppComponent implements OnInit, AfterViewInit {
+export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   title = "Baraem Al Ain";
   Page = "main";
+  private routerSub: Subscription | null = null;
 
   constructor(
     private modalService: NgbModal,
@@ -20,12 +22,22 @@ export class AppComponent implements OnInit, AfterViewInit {
     private languageService: LanguageService,
   ) {}
   ngAfterViewInit(): void {
-    this.router.events.subscribe((val) => {
-      if (val["url"] && val["url"] != this.Page) {
-        this.Page = val["url"]?.substring(1);
-      }
-      if (this.Page == "") this.Page = "main";
-    });
+    this.syncPageFromUrl(this.router.url);
+    this.routerSub = this.router.events
+      .pipe(filter((e): e is NavigationEnd => e instanceof NavigationEnd))
+      .subscribe((event) => {
+        this.syncPageFromUrl(event.urlAfterRedirects);
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.routerSub?.unsubscribe();
+    this.routerSub = null;
+  }
+
+  private syncPageFromUrl(url: string): void {
+    const page = (url ?? "/").split("?")[0].split("#")[0].replace(/^\//, "");
+    this.Page = page === "" ? "main" : page;
   }
 
   ngOnInit() {

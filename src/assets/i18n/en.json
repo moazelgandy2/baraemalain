@@ -122,6 +122,13 @@
       "notice_1": "Tuition fees for the 2025-2026 school year have been revised and will be announced soon.",
       "notice_2": "You may contact the school accounts department for any tuition inquiries."
     },
+    "guide": {
+      "title": "Parents Guide",
+      "breadcrumb_current": "Parents Guide",
+      "subtitle": "View the parents guide for the 2026-2027 school year.",
+      "view_document": "View Document",
+      "download_pdf": "Download PDF File"
+    },
     "aboutSchool": {
       "title": "About the School",
       "breadcrumb_current": "About the School",

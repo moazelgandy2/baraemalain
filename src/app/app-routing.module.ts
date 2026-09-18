@@ -170,6 +170,10 @@ const routes: Routes = [
     path: "MockExams",
     component: AppComponent,
   },
+  {
+    path: "guide",
+    component: AppComponent,
+  },
 ];
 
 @NgModule({

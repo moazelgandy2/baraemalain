@@ -1,1 +1,54 @@
-<p>guide works!</p>
+<div class="page-title" data-aos="fade">
+  <div class="heading">
+    <div class="container">
+      <div class="row d-flex justify-content-center text-center">
+        <div class="col-lg-5 text-nowrap">
+          <h1>{{ 'pages.guide.title' | translate }}</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <nav class="breadcrumbs">
+    <div class="container">
+      <ol>
+        <li><a href="index.html">{{ 'common.breadcrumb_home' | translate }}</a></li>
+        <li class="current">{{ 'pages.guide.breadcrumb_current' | translate }}</li>
+      </ol>
+    </div>
+  </nav>
+</div>
+
+<section id="parents-guide" class="section guide-section">
+  <div class="container" data-aos="fade-up" data-aos-delay="100">
+    <p class="guide-subtitle text-center">
+      {{ 'pages.guide.subtitle' | translate }}
+    </p>
+
+    <div class="pdf-viewer" data-aos="fade-up" data-aos-delay="200">
+      <div class="pdf-viewer-bar">
+        <span class="pdf-viewer-title" dir="auto">{{ pdfLabel }}</span>
+        <span class="pdf-viewer-actions">
+          <a class="pdf-icon-btn" [href]="encodedPdfPath" target="_blank" rel="noopener"
+            [title]="'pages.guide.view_document' | translate">
+            <i class="bi bi-box-arrow-up-right"></i>
+          </a>
+          <a class="pdf-icon-btn" [href]="encodedPdfPath" [attr.download]="pdfLabel"
+            [title]="'pages.guide.download_pdf' | translate">
+            <i class="bi bi-download"></i>
+          </a>
+        </span>
+      </div>
+      <iframe [src]="safePdfUrl" class="pdf-frame" [title]="pdfLabel"
+        loading="lazy"></iframe>
+    </div>
+
+    <div class="guide-actions text-center">
+      <a class="btn btn-outline-primary guide-btn" [href]="encodedPdfPath" [attr.download]="pdfLabel">
+        {{ 'pages.guide.download_pdf' | translate }}
+      </a>
+      <a class="btn btn-primary guide-btn" [href]="encodedPdfPath" target="_blank" rel="noopener">
+        {{ 'pages.guide.view_document' | translate }}
+      </a>
+    </div>
+  </div>
+</section>

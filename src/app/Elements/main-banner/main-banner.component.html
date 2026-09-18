@@ -1,17 +1,26 @@
 <header id="header" class="header d-flex align-items-center sticky-top">
-  <div class="header-container container-fluid position-relative d-flex align-items-center">
+  <div
+    class="header-container container-fluid position-relative d-flex align-items-center"
+  >
     <nav class="navbar navbar-expand-xl w-100" aria-label="Main navigation">
-      <a class="navbar-brand logo d-flex align-items-center flex-shrink-0" [routerLink]="'.'">
+      <a
+        class="navbar-brand logo d-flex align-items-center flex-shrink-0"
+        [routerLink]="'.'"
+      >
         <img src="logo.png" alt="Baraem Al Ain logo" />
-        <span class="sitename text-nowrap" dir="auto">{{ 'nav.brandShort' | translate }}</span>
+        <span class="sitename text-nowrap" dir="auto">{{
+          "nav.brandShort" | translate
+        }}</span>
       </a>
 
       <button
+        #menuTrigger
         class="navbar-toggler"
         type="button"
         (click)="openMenu()"
         [attr.aria-expanded]="!isNavbarCollapsed"
-        aria-controls="primaryNavbar"
+        aria-controls="mobileDrawer"
+        aria-haspopup="dialog"
         aria-label="Toggle navigation"
       >
         <span class="navbar-toggler-icon"></span>
@@ -20,15 +29,42 @@
       <div class="collapse navbar-collapse desktop-menu" id="primaryNavbar">
         <ul class="navbar-nav align-items-xl-center">
           <li class="nav-item" ngbDropdown>
-            <button type="button" class="nav-link dropdown-toggle" ngbDropdownToggle>
-              {{ 'nav.about' | translate }}
+            <button
+              type="button"
+              class="nav-link dropdown-toggle"
+              ngbDropdownToggle
+            >
+              {{ "nav.about" | translate }}
             </button>
             <div class="dropdown-menu" ngbDropdownMenu>
-              <button type="button" class="dropdown-item" ngbDropdownItem (click)="ChangePage('aboutSchool')">{{ 'nav.about_school' | translate }}</button>
-              <button type="button" class="dropdown-item" ngbDropdownItem (click)="ChangePage('vision')">{{ 'nav.vision' | translate }}</button>
-              <button type="button" class="dropdown-item" ngbDropdownItem (click)="ChangePage('principalWord')">{{ 'nav.principal_word' | translate }}</button>
+              <button
+                type="button"
+                class="dropdown-item"
+                ngbDropdownItem
+                (click)="ChangePage('aboutSchool')"
+              >
+                {{ "nav.about_school" | translate }}
+              </button>
+              <button
+                type="button"
+                class="dropdown-item"
+                ngbDropdownItem
+                (click)="ChangePage('vision')"
+              >
+                {{ "nav.vision" | translate }}
+              </button>
+              <button
+                type="button"
+                class="dropdown-item"
+                ngbDropdownItem
+                (click)="ChangePage('principalWord')"
+              >
+                {{ "nav.principal_word" | translate }}
+              </button>
               <div class="dropdown-divider"></div>
-              <span class="dropdown-header">{{ 'nav.policies' | translate }}</span>
+              <span class="dropdown-header">{{
+                "nav.policies" | translate
+              }}</span>
               <a
                 *ngFor="let policy of policies"
                 class="dropdown-item"
@@ -42,72 +78,190 @@
           </li>
 
           <li class="nav-item" ngbDropdown>
-            <button type="button" class="nav-link dropdown-toggle" ngbDropdownToggle>
-              {{ 'nav.admission' | translate }}
+            <button
+              type="button"
+              class="nav-link dropdown-toggle"
+              ngbDropdownToggle
+            >
+              {{ "nav.admission" | translate }}
             </button>
             <div class="dropdown-menu" ngbDropdownMenu>
-              <button type="button" class="dropdown-item" ngbDropdownItem (click)="ChangePage('Requirements')">{{ 'nav.requirements' | translate }}</button>
-              <button type="button" class="dropdown-item" ngbDropdownItem (click)="ChangePage('tuition')">{{ 'nav.tuition' | translate }}</button>
+              <button
+                type="button"
+                class="dropdown-item"
+                ngbDropdownItem
+                (click)="ChangePage('Requirements')"
+              >
+                {{ "nav.requirements" | translate }}
+              </button>
+              <button
+                type="button"
+                class="dropdown-item"
+                ngbDropdownItem
+                (click)="ChangePage('tuition')"
+              >
+                {{ "nav.tuition" | translate }}
+              </button>
             </div>
           </li>
 
           <li class="nav-item" ngbDropdown>
-            <button type="button" class="nav-link dropdown-toggle" ngbDropdownToggle>
-              {{ 'nav.parents' | translate }}
+            <button
+              type="button"
+              class="nav-link dropdown-toggle"
+              ngbDropdownToggle
+            >
+              {{ "nav.parents" | translate }}
             </button>
             <div class="dropdown-menu" ngbDropdownMenu>
-              <a class="dropdown-item" href="assets/Files/School Calendar.pdf" target="_blank" rel="noopener">{{ 'nav.calendar' | translate }}</a>
-              <a class="dropdown-item" href="assets/Files/الدليل الإرشادي لأولياء الأمور 2024-2025.pdf" target="_blank" rel="noopener">{{ 'nav.guide' | translate }} 2024-2025</a>
+              <a
+                class="dropdown-item"
+                href="assets/Files/School Calendar.pdf"
+                target="_blank"
+                rel="noopener"
+                >{{ "nav.calendar" | translate }}</a
+              >
+              <a
+                class="dropdown-item"
+                href="assets/Files/الدليل الإرشادي لأولياء الأمور 2024-2025.pdf"
+                target="_blank"
+                rel="noopener"
+                >{{ "nav.guide" | translate }} 2024-2025</a
+              >
             </div>
           </li>
 
           <li class="nav-item" ngbDropdown>
-            <button type="button" class="nav-link dropdown-toggle" ngbDropdownToggle>
-              {{ 'nav.students' | translate }}
+            <button
+              type="button"
+              class="nav-link dropdown-toggle"
+              ngbDropdownToggle
+            >
+              {{ "nav.students" | translate }}
             </button>
             <div class="dropdown-menu" ngbDropdownMenu>
-              <button type="button" class="dropdown-item" ngbDropdownItem (click)="ChangePage('schedule')">{{ 'nav.schedule' | translate }}</button>
+              <button
+                type="button"
+                class="dropdown-item"
+                ngbDropdownItem
+                (click)="ChangePage('schedule')"
+              >
+                {{ "nav.schedule" | translate }}
+              </button>
               <div class="dropdown-divider"></div>
-              <span class="dropdown-header">{{ 'nav.platforms' | translate }}</span>
+              <span class="dropdown-header">{{
+                "nav.platforms" | translate
+              }}</span>
               <button
                 *ngFor="let app of eduApps"
                 type="button"
                 class="dropdown-item ltr-isolate"
                 ngbDropdownItem
                 (click)="ChangePage(app.page)"
-              >{{ app.label }}</button>
+              >
+                {{ app.label }}
+              </button>
               <div class="dropdown-divider"></div>
-              <span class="dropdown-header">{{ 'nav.intl_club' | translate }}</span>
+              <span class="dropdown-header">{{
+                "nav.intl_club" | translate
+              }}</span>
               <button
                 *ngFor="let test of intlTests"
                 type="button"
                 class="dropdown-item ltr-isolate"
                 ngbDropdownItem
                 (click)="ChangePage(test.page)"
-              >{{ test.label }}</button>
+              >
+                {{ test.label }}
+              </button>
               <div class="dropdown-divider"></div>
-              <button type="button" class="dropdown-item" ngbDropdownItem (click)="ChangePage('MockExams')">{{ 'nav.mockExams' | translate }}</button>
-              <button type="button" class="dropdown-item" ngbDropdownItem (click)="ChangePage('Gifted')">{{ 'nav.gifted' | translate }}</button>
-              <button type="button" class="dropdown-item" ngbDropdownItem (click)="ChangePage('events')">{{ 'nav.events' | translate }}</button>
-              <button type="button" class="dropdown-item" ngbDropdownItem (click)="ChangePage('ArabicReadingChallenge')">{{ 'nav.readingChallenge' | translate }}</button>
-              <button type="button" class="dropdown-item" ngbDropdownItem (click)="ChangePage('E-Library')">{{ 'nav.elibrary' | translate }}</button>
+              <button
+                type="button"
+                class="dropdown-item"
+                ngbDropdownItem
+                (click)="ChangePage('MockExams')"
+              >
+                {{ "nav.mockExams" | translate }}
+              </button>
+              <button
+                type="button"
+                class="dropdown-item"
+                ngbDropdownItem
+                (click)="ChangePage('Gifted')"
+              >
+                {{ "nav.gifted" | translate }}
+              </button>
+              <button
+                type="button"
+                class="dropdown-item"
+                ngbDropdownItem
+                (click)="ChangePage('events')"
+              >
+                {{ "nav.events" | translate }}
+              </button>
+              <button
+                type="button"
+                class="dropdown-item"
+                ngbDropdownItem
+                (click)="ChangePage('ArabicReadingChallenge')"
+              >
+                {{ "nav.readingChallenge" | translate }}
+              </button>
+              <button
+                type="button"
+                class="dropdown-item"
+                ngbDropdownItem
+                (click)="ChangePage('E-Library')"
+              >
+                {{ "nav.elibrary" | translate }}
+              </button>
             </div>
           </li>
 
           <li class="nav-item">
-            <button type="button" class="nav-link" (click)="ChangePage('NationalID')">{{ 'nav.nationalId' | translate }}</button>
+            <button
+              type="button"
+              class="nav-link"
+              (click)="ChangePage('NationalID')"
+            >
+              {{ "nav.nationalId" | translate }}
+            </button>
           </li>
           <li class="nav-item">
-            <button type="button" class="nav-link" (click)="ChangePage('importantFiles')">{{ 'nav.importantFiles' | translate }}</button>
+            <button
+              type="button"
+              class="nav-link"
+              (click)="ChangePage('importantFiles')"
+            >
+              {{ "nav.importantFiles" | translate }}
+            </button>
           </li>
           <li class="nav-item">
-            <button type="button" class="nav-link" (click)="ChangePage('grads')">{{ 'nav.graduates' | translate }}</button>
+            <button
+              type="button"
+              class="nav-link"
+              (click)="ChangePage('grads')"
+            >
+              {{ "nav.graduates" | translate }}
+            </button>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="https://www.baraemalainabudhabi.com/" target="_blank" rel="noopener">{{ 'nav.abuDhabiBranch' | translate }}</a>
+            <a
+              class="nav-link"
+              href="https://www.baraemalainabudhabi.com/"
+              target="_blank"
+              rel="noopener"
+              >{{ "nav.abuDhabiBranch" | translate }}</a
+            >
           </li>
           <li class="nav-item">
-            <button type="button" class="nav-link" (click)="ChangePage('contact')">{{ 'nav.contact' | translate }}</button>
+            <button
+              type="button"
+              class="nav-link"
+              (click)="ChangePage('contact')"
+            >
+              {{ "nav.contact" | translate }}
+            </button>
           </li>
         </ul>
       </div>
@@ -116,7 +270,9 @@
         type="button"
         class="btn btn-outline-primary btn-sm lang-toggle"
         (click)="languageService.toggle()"
-      >{{ 'common.langToggle' | translate }}</button>
+      >
+        {{ "common.langToggle" | translate }}
+      </button>
     </nav>
   </div>
 
@@ -130,33 +286,84 @@
 
   <!-- Mobile accordion sheet — matches Image 2, not a floating dropdown card -->
   <aside
+    #drawer
+    id="mobileDrawer"
     class="drawer-menu"
     [class.open]="!isNavbarCollapsed"
     [class.scrolled]="listScrolled"
     role="dialog"
     aria-modal="true"
-    aria-label="Mobile navigation"
+    aria-labelledby="mobileDrawerTitle"
     [attr.aria-hidden]="isNavbarCollapsed"
   >
     <div class="drawer-close-row">
-      <span class="drawer-menu-title">{{ 'nav.menu' | translate }}</span>
-      <button type="button" class="drawer-close" (click)="closeMenu()" aria-label="Close menu">
-        <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M2 2l12 12M14 2L2 14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      <span id="mobileDrawerTitle" class="drawer-menu-title">{{
+        "nav.menu" | translate
+      }}</span>
+      <button
+        #drawerClose
+        type="button"
+        class="drawer-close"
+        (click)="closeMenu()"
+        aria-label="Close menu"
+      >
+        <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+          <path
+            d="M2 2l12 12M14 2L2 14"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+          />
+        </svg>
       </button>
     </div>
 
     <nav class="drawer-list" (scroll)="onDrawerScroll($event)">
       <!-- About -->
       <div class="drawer-group" [class.expanded]="isOpen('about')">
-        <button type="button" class="drawer-row" (click)="toggleSection('about')" [attr.aria-expanded]="isOpen('about')">
-          <span class="drawer-title">{{ 'nav.about' | translate }}</span>
-          <span class="drawer-icon" [class.active]="isOpen('about')" aria-hidden="true"><span class="plus"></span></span>
+        <button
+          type="button"
+          class="drawer-row"
+          (click)="toggleSection('about')"
+          [attr.aria-expanded]="isOpen('about')"
+          aria-controls="drawer-about-body"
+        >
+          <span class="drawer-title">{{ "nav.about" | translate }}</span>
+          <span
+            class="drawer-icon"
+            [class.active]="isOpen('about')"
+            aria-hidden="true"
+            ><span class="plus"></span
+          ></span>
         </button>
-        <div class="drawer-body" *ngIf="isOpen('about')">
-          <button type="button" class="drawer-leaf" (click)="ChangePage('aboutSchool')">{{ 'nav.about_school' | translate }}</button>
-          <button type="button" class="drawer-leaf" (click)="ChangePage('vision')">{{ 'nav.vision' | translate }}</button>
-          <button type="button" class="drawer-leaf" (click)="ChangePage('principalWord')">{{ 'nav.principal_word' | translate }}</button>
-          <div class="drawer-subhead">{{ 'nav.policies' | translate }}</div>
+        <div
+          id="drawer-about-body"
+          class="drawer-body"
+          *ngIf="isOpen('about')"
+          [attr.aria-hidden]="!isOpen('about')"
+        >
+          <button
+            type="button"
+            class="drawer-leaf"
+            (click)="ChangePage('aboutSchool')"
+          >
+            {{ "nav.about_school" | translate }}
+          </button>
+          <button
+            type="button"
+            class="drawer-leaf"
+            (click)="ChangePage('vision')"
+          >
+            {{ "nav.vision" | translate }}
+          </button>
+          <button
+            type="button"
+            class="drawer-leaf"
+            (click)="ChangePage('principalWord')"
+          >
+            {{ "nav.principal_word" | translate }}
+          </button>
+          <div class="drawer-subhead">{{ "nav.policies" | translate }}</div>
           <a
             *ngFor="let policy of policies"
             class="drawer-leaf small"
@@ -165,46 +372,137 @@
             target="_blank"
             rel="noopener"
             (click)="closeMenu()"
-          >{{ policy.labelKey | translate }}</a>
+            >{{ policy.labelKey | translate }}</a
+          >
         </div>
       </div>
 
       <!-- Admission -->
       <div class="drawer-group" [class.expanded]="isOpen('admission')">
-        <button type="button" class="drawer-row" (click)="toggleSection('admission')" [attr.aria-expanded]="isOpen('admission')">
-          <span class="drawer-title">{{ 'nav.admission' | translate }}</span>
-          <span class="drawer-icon" [class.active]="isOpen('admission')" aria-hidden="true"><span class="plus"></span></span>
+        <button
+          type="button"
+          class="drawer-row"
+          (click)="toggleSection('admission')"
+          [attr.aria-expanded]="isOpen('admission')"
+          aria-controls="drawer-admission-body"
+        >
+          <span class="drawer-title">{{ "nav.admission" | translate }}</span>
+          <span
+            class="drawer-icon"
+            [class.active]="isOpen('admission')"
+            aria-hidden="true"
+            ><span class="plus"></span
+          ></span>
         </button>
-        <div class="drawer-body" *ngIf="isOpen('admission')">
-          <button type="button" class="drawer-leaf" (click)="ChangePage('Requirements')">{{ 'nav.requirements' | translate }}</button>
-          <button type="button" class="drawer-leaf" (click)="ChangePage('tuition')">{{ 'nav.tuition' | translate }}</button>
+        <div
+          id="drawer-admission-body"
+          class="drawer-body"
+          *ngIf="isOpen('admission')"
+          [attr.aria-hidden]="!isOpen('admission')"
+        >
+          <button
+            type="button"
+            class="drawer-leaf"
+            (click)="ChangePage('Requirements')"
+          >
+            {{ "nav.requirements" | translate }}
+          </button>
+          <button
+            type="button"
+            class="drawer-leaf"
+            (click)="ChangePage('tuition')"
+          >
+            {{ "nav.tuition" | translate }}
+          </button>
         </div>
       </div>
 
       <!-- Parents -->
       <div class="drawer-group" [class.expanded]="isOpen('parents')">
-        <button type="button" class="drawer-row" (click)="toggleSection('parents')" [attr.aria-expanded]="isOpen('parents')">
-          <span class="drawer-title">{{ 'nav.parents' | translate }}</span>
-          <span class="drawer-icon" [class.active]="isOpen('parents')" aria-hidden="true"><span class="plus"></span></span>
+        <button
+          type="button"
+          class="drawer-row"
+          (click)="toggleSection('parents')"
+          [attr.aria-expanded]="isOpen('parents')"
+          aria-controls="drawer-parents-body"
+        >
+          <span class="drawer-title">{{ "nav.parents" | translate }}</span>
+          <span
+            class="drawer-icon"
+            [class.active]="isOpen('parents')"
+            aria-hidden="true"
+            ><span class="plus"></span
+          ></span>
         </button>
-        <div class="drawer-body" *ngIf="isOpen('parents')">
-          <a class="drawer-leaf" href="assets/Files/School Calendar.pdf" target="_blank" rel="noopener" (click)="closeMenu()">{{ 'nav.calendar' | translate }}</a>
-          <a class="drawer-leaf" href="assets/Files/الدليل الإرشادي لأولياء الأمور 2024-2025.pdf" target="_blank" rel="noopener" (click)="closeMenu()">{{ 'nav.guide' | translate }} 2024-2025</a>
+        <div
+          id="drawer-parents-body"
+          class="drawer-body"
+          *ngIf="isOpen('parents')"
+          [attr.aria-hidden]="!isOpen('parents')"
+        >
+          <a
+            class="drawer-leaf"
+            href="assets/Files/School Calendar.pdf"
+            target="_blank"
+            rel="noopener"
+            (click)="closeMenu()"
+            >{{ "nav.calendar" | translate }}</a
+          >
+          <a
+            class="drawer-leaf"
+            href="assets/Files/الدليل الإرشادي لأولياء الأمور 2024-2025.pdf"
+            target="_blank"
+            rel="noopener"
+            (click)="closeMenu()"
+            >{{ "nav.guide" | translate }} 2024-2025</a
+          >
         </div>
       </div>
 
       <!-- Students -->
       <div class="drawer-group" [class.expanded]="isOpen('students')">
-        <button type="button" class="drawer-row" (click)="toggleSection('students')" [attr.aria-expanded]="isOpen('students')">
-          <span class="drawer-title">{{ 'nav.students' | translate }}</span>
-          <span class="drawer-icon" [class.active]="isOpen('students')" aria-hidden="true"><span class="plus"></span></span>
+        <button
+          type="button"
+          class="drawer-row"
+          (click)="toggleSection('students')"
+          [attr.aria-expanded]="isOpen('students')"
+          aria-controls="drawer-students-body"
+        >
+          <span class="drawer-title">{{ "nav.students" | translate }}</span>
+          <span
+            class="drawer-icon"
+            [class.active]="isOpen('students')"
+            aria-hidden="true"
+            ><span class="plus"></span
+          ></span>
         </button>
-        <div class="drawer-body" *ngIf="isOpen('students')">
-          <button type="button" class="drawer-leaf" (click)="ChangePage('schedule')">{{ 'nav.schedule' | translate }}</button>
+        <div
+          id="drawer-students-body"
+          class="drawer-body"
+          *ngIf="isOpen('students')"
+          [attr.aria-hidden]="!isOpen('students')"
+        >
+          <button
+            type="button"
+            class="drawer-leaf"
+            (click)="ChangePage('schedule')"
+          >
+            {{ "nav.schedule" | translate }}
+          </button>
 
-          <button type="button" class="drawer-row nested" (click)="toggleSub('platforms')" [attr.aria-expanded]="isSubOpen('platforms')">
-            <span class="drawer-title">{{ 'nav.platforms' | translate }}</span>
-            <span class="drawer-icon sm" [class.active]="isSubOpen('platforms')" aria-hidden="true"><span class="plus"></span></span>
+          <button
+            type="button"
+            class="drawer-row nested"
+            (click)="toggleSub('platforms')"
+            [attr.aria-expanded]="isSubOpen('platforms')"
+          >
+            <span class="drawer-title">{{ "nav.platforms" | translate }}</span>
+            <span
+              class="drawer-icon sm"
+              [class.active]="isSubOpen('platforms')"
+              aria-hidden="true"
+              ><span class="plus"></span
+            ></span>
           </button>
           <div class="drawer-subbody" *ngIf="isSubOpen('platforms')">
             <button
@@ -212,12 +510,24 @@
               type="button"
               class="drawer-leaf ltr-isolate"
               (click)="ChangePage(app.page)"
-            >{{ app.label }}</button>
+            >
+              {{ app.label }}
+            </button>
           </div>
 
-          <button type="button" class="drawer-row nested" (click)="toggleSub('intl')" [attr.aria-expanded]="isSubOpen('intl')">
-            <span class="drawer-title">{{ 'nav.intl_club' | translate }}</span>
-            <span class="drawer-icon sm" [class.active]="isSubOpen('intl')" aria-hidden="true"><span class="plus"></span></span>
+          <button
+            type="button"
+            class="drawer-row nested"
+            (click)="toggleSub('intl')"
+            [attr.aria-expanded]="isSubOpen('intl')"
+          >
+            <span class="drawer-title">{{ "nav.intl_club" | translate }}</span>
+            <span
+              class="drawer-icon sm"
+              [class.active]="isSubOpen('intl')"
+              aria-hidden="true"
+              ><span class="plus"></span
+            ></span>
           </button>
           <div class="drawer-subbody" *ngIf="isSubOpen('intl')">
             <button
@@ -225,27 +535,96 @@
               type="button"
               class="drawer-leaf ltr-isolate"
               (click)="ChangePage(test.page)"
-            >{{ test.label }}</button>
+            >
+              {{ test.label }}
+            </button>
           </div>
 
-          <button type="button" class="drawer-leaf" (click)="ChangePage('MockExams')">{{ 'nav.mockExams' | translate }}</button>
-          <button type="button" class="drawer-leaf" (click)="ChangePage('Gifted')">{{ 'nav.gifted' | translate }}</button>
-          <button type="button" class="drawer-leaf" (click)="ChangePage('events')">{{ 'nav.events' | translate }}</button>
-          <button type="button" class="drawer-leaf" (click)="ChangePage('ArabicReadingChallenge')">{{ 'nav.readingChallenge' | translate }}</button>
-          <button type="button" class="drawer-leaf" (click)="ChangePage('E-Library')">{{ 'nav.elibrary' | translate }}</button>
+          <button
+            type="button"
+            class="drawer-leaf"
+            (click)="ChangePage('MockExams')"
+          >
+            {{ "nav.mockExams" | translate }}
+          </button>
+          <button
+            type="button"
+            class="drawer-leaf"
+            (click)="ChangePage('Gifted')"
+          >
+            {{ "nav.gifted" | translate }}
+          </button>
+          <button
+            type="button"
+            class="drawer-leaf"
+            (click)="ChangePage('events')"
+          >
+            {{ "nav.events" | translate }}
+          </button>
+          <button
+            type="button"
+            class="drawer-leaf"
+            (click)="ChangePage('ArabicReadingChallenge')"
+          >
+            {{ "nav.readingChallenge" | translate }}
+          </button>
+          <button
+            type="button"
+            class="drawer-leaf"
+            (click)="ChangePage('E-Library')"
+          >
+            {{ "nav.elibrary" | translate }}
+          </button>
         </div>
       </div>
 
       <!-- Single links -->
-      <button type="button" class="drawer-row single" (click)="ChangePage('NationalID')">{{ 'nav.nationalId' | translate }}</button>
-      <button type="button" class="drawer-row single" (click)="ChangePage('importantFiles')">{{ 'nav.importantFiles' | translate }}</button>
-      <button type="button" class="drawer-row single" (click)="ChangePage('grads')">{{ 'nav.graduates' | translate }}</button>
-      <a class="drawer-row single link" href="https://www.baraemalainabudhabi.com/" target="_blank" rel="noopener" (click)="closeMenu()">{{ 'nav.abuDhabiBranch' | translate }}</a>
-      <button type="button" class="drawer-row single" (click)="ChangePage('contact')">{{ 'nav.contact' | translate }}</button>
+      <button
+        type="button"
+        class="drawer-row single"
+        (click)="ChangePage('NationalID')"
+      >
+        {{ "nav.nationalId" | translate }}
+      </button>
+      <button
+        type="button"
+        class="drawer-row single"
+        (click)="ChangePage('importantFiles')"
+      >
+        {{ "nav.importantFiles" | translate }}
+      </button>
+      <button
+        type="button"
+        class="drawer-row single"
+        (click)="ChangePage('grads')"
+      >
+        {{ "nav.graduates" | translate }}
+      </button>
+      <a
+        class="drawer-row single link"
+        href="https://www.baraemalainabudhabi.com/"
+        target="_blank"
+        rel="noopener"
+        (click)="closeMenu()"
+        >{{ "nav.abuDhabiBranch" | translate }}</a
+      >
+      <button
+        type="button"
+        class="drawer-row single"
+        (click)="ChangePage('contact')"
+      >
+        {{ "nav.contact" | translate }}
+      </button>
     </nav>
 
     <div class="drawer-foot">
-      <button type="button" class="btn btn-outline-primary btn-sm w-100" (click)="toggleLang()">{{ 'common.langToggle' | translate }}</button>
+      <button
+        type="button"
+        class="btn btn-outline-primary btn-sm w-100"
+        (click)="toggleLang()"
+      >
+        {{ "common.langToggle" | translate }}
+      </button>
     </div>
   </aside>
 </header>

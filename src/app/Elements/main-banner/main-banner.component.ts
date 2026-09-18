@@ -1,10 +1,12 @@
 import {
   Component,
+  ElementRef,
   EventEmitter,
   HostListener,
   Inject,
   OnDestroy,
   Output,
+  ViewChild,
 } from "@angular/core";
 import { DOCUMENT } from "@angular/common";
 import { LanguageService } from "../../core/language.service";
@@ -27,6 +29,11 @@ export interface NavPage {
 })
 export class MainBannerComponent implements OnDestroy {
   @Output() PageEvent = new EventEmitter<string>();
+  @ViewChild("menuTrigger") private menuTrigger?: ElementRef<HTMLButtonElement>;
+  @ViewChild("drawerClose") private drawerClose?: ElementRef<HTMLButtonElement>;
+  @ViewChild("drawer", { read: ElementRef })
+  private drawer?: ElementRef<HTMLElement>;
+
   isNavbarCollapsed = true;
 
   /** Mobile drawer accordion state — null = all collapsed (matches Image 2). */
@@ -172,6 +179,9 @@ export class MainBannerComponent implements OnDestroy {
     }
     this.isNavbarCollapsed = false;
     this.document.body?.classList.add("mobile-menu-open");
+
+    // Wait for the drawer to become visible before moving focus into it.
+    queueMicrotask(() => this.drawerClose?.nativeElement.focus());
   }
 
   closeMenu(): void {
@@ -191,6 +201,7 @@ export class MainBannerComponent implements OnDestroy {
         this.openSection = null;
         this.openSub = null;
         this.listScrolled = false;
+        this.menuTrigger?.nativeElement.focus();
       }
     }, 200);
   }
@@ -214,6 +225,42 @@ export class MainBannerComponent implements OnDestroy {
   onEscape(): void {
     if (!this.isNavbarCollapsed) {
       this.closeMenu();
+    }
+  }
+
+  @HostListener("document:keydown", ["$event"])
+  onDrawerKeydown(event: KeyboardEvent): void {
+    if (this.isNavbarCollapsed || event.key !== "Tab") {
+      return;
+    }
+
+    const drawer = this.drawer?.nativeElement;
+    if (!drawer) {
+      return;
+    }
+
+    const focusable = Array.from(
+      drawer.querySelectorAll<HTMLElement>(
+        'button:not([disabled]), a[href], [tabindex]:not([tabindex="-1"])',
+      ),
+    ).filter((element) => element.getClientRects().length > 0);
+
+    if (!focusable.length) {
+      event.preventDefault();
+      this.drawerClose?.nativeElement.focus();
+      return;
+    }
+
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    const active = this.document.activeElement;
+
+    if (event.shiftKey && active === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && active === last) {
+      event.preventDefault();
+      first.focus();
     }
   }
 

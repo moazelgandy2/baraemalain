@@ -1,0 +1,458 @@
+
+<div class="page-title" data-aos="fade">
+  <div class="heading">
+    <div class="container">
+      <div class="row d-flex justify-content-center text-center">
+        <div class="col-lg-2  text-nowrap">
+          <h1>{{ 'pages.reading.title' | translate }}</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <nav class="breadcrumbs">
+    <div class="container">
+      <ol>
+        <li><a href="index.html">{{ 'common.breadcrumb_home' | translate }}</a></li>
+        <li class="current">{{ 'pages.reading.breadcrumb_current' | translate }}</li>
+      </ol>
+    </div>
+  </nav>
+</div>
+<button mat-icon-button class="go-to-top btn btn-primary rounded-circle" *ngIf="showTopButton" (click)="scrollToTop()">
+  <i class="bi bi-arrow-up h1"></i>
+</button>
+<section id="schedules" class="section about-us">
+
+  <div class="container text-center">
+    <h1 style="padding-bottom: 2em;" data-aos="fade-up" data-aos-delay="50">{{ 'pages.reading.hero_heading' | translate }}</h1>
+<div class="row"  data-aos="fade-up" data-aos-delay="200" >
+  <div class="col">
+    <div class="d-grid gap-2">
+      <button class="btn btn-success" type="button" (click)="onClick('About')">{{ 'pages.reading.nav_about' | translate }}</button>
+    </div>
+  </div>
+  <div class="col">
+    <div class="d-grid gap-2">
+      <button class="btn btn-success" type="button" (click)="onClick('BookConditions')">{{ 'pages.reading.nav_bookConditions' | translate }}</button>
+    </div>
+  </div>
+</div>
+<br>
+<div class="row"  data-aos="fade-up" data-aos-delay="200" >
+  <div class="col">
+    <div class="d-grid gap-2">
+      <button class="btn btn-primary" type="button" (click)="onClick('GuidePurpose')">{{ 'pages.reading.nav_guidePurpose' | translate }}</button>
+    </div>
+  </div>
+  <div class="col">
+    <div class="d-grid gap-2">
+      <button class="btn btn-primary" type="button" (click)="onClick('HowToWin')">{{ 'pages.reading.nav_howToWin' | translate }}</button>
+    </div>
+  </div>
+</div>
+<br>
+<div class="row"  data-aos="fade-up" data-aos-delay="200" >
+  <div class="col">
+    <div class="d-grid gap-2">
+      <button class="btn btn-success" type="button" (click)="onClick('CompetitionDate')">{{ 'pages.reading.nav_date' | translate }}</button>
+    </div>
+  </div>
+  <div class="col">
+    <div class="d-grid gap-2">
+      <button class="btn btn-success" type="button" (click)="onClick('SuggestedBooks')">{{ 'pages.reading.nav_suggested' | translate }}</button>
+    </div>
+  </div>
+</div>
+<br>
+<div class="row"  data-aos="fade-up" data-aos-delay="200" >
+  <div class="col">
+    <div class="d-grid gap-2">
+      <button class="btn btn-primary" type="button" (click)="onClick('RegistrationStages')">{{ 'pages.reading.nav_stages' | translate }}</button>
+    </div>
+  </div>
+  <div class="col">
+    <div class="d-grid gap-2">
+      <button class="btn btn-primary" type="button" (click)="onClick('Contact')">{{ 'pages.reading.nav_contact' | translate }}</button>
+    </div>
+  </div>
+</div>
+<br>
+<div class="row"  data-aos="fade-up" data-aos-delay="200" >
+  <div class="col">
+    <div class="d-grid gap-2">
+      <button class="btn btn-success" type="button" (click)="onClick('RegistrationSteps')">{{ 'pages.reading.nav_steps' | translate }}</button>
+    </div>
+  </div>
+  <div class="col">
+    <div class="d-grid gap-2">
+      <button class="btn btn-success" type="button" (click)="onClick('Mechanism')">{{ 'pages.reading.nav_mechanism' | translate }}</button>
+    </div>
+  </div>
+</div>
+<br>
+<div class="row"  data-aos="fade-up" data-aos-delay="200" >
+  <div class="col">
+    <div class="d-grid gap-2">
+      <button class="btn btn-primary" type="button" (click)="onClick('Conditions')">{{ 'pages.reading.nav_conditions' | translate }}</button>
+    </div>
+  </div>
+  <div class="col">
+    <div class="d-grid gap-2">
+      <button class="btn btn-primary" type="button" (click)="onClick('JudgingCriteria')">{{ 'pages.reading.nav_judging' | translate }}</button>
+    </div>
+  </div>
+</div>
+<br>
+<div class="row"  data-aos="fade-up" data-aos-delay="200" >
+  <div class="col">
+    <div class="d-grid gap-2">
+      <button class="btn btn-success" type="button" (click)="onClick('FAQ')">{{ 'pages.reading.nav_faq' | translate }}</button>
+    </div>
+  </div>
+  <!-- <div class="col">
+    <div class="d-grid gap-2">
+      <button class="btn btn-success" type="button" (click)="onClick('Suggestions')">أفكار ومقترحات</button>
+    </div>
+  </div> -->
+  <div class="col">
+    <div class="d-grid gap-2">
+      <button class="btn btn-danger" type="button" (click)="onClick('Links')">{{ 'pages.reading.nav_links' | translate }}</button>
+    </div>
+  </div>
+</div>
+<br>
+<!-- <div class="row"  data-aos="fade-up" data-aos-delay="200" >
+
+
+</div>
+<br> -->
+<!-- <div class="row"  data-aos="fade-up" data-aos-delay="200" >
+
+
+</div>
+<br> -->
+</div>
+<br>
+<hr/>
+<br>
+<div id="About" class="container text-center" data-aos="fade-up" data-aos-delay="50">
+  <h1 style="padding-bottom: 2em" data-aos="fade-up" data-aos-delay="50">{{ 'pages.reading.nav_about' | translate }}</h1>
+  <h5 class="col text-dark" data-aos="fade-up" data-aos-delay="50">
+    {{ 'pages.reading.body_about' | translate }}
+  </h5>
+  <br>
+  <hr data-aos="fade-up" data-aos-delay="50"/>
+  <br>
+  <h1 style="padding-bottom: 2em" data-aos="fade-up" data-aos-delay="50">{{ 'pages.reading.nav_guidePurpose' | translate }}</h1>
+  <h5 class="col text-dark" data-aos="fade-up" data-aos-delay="50">
+    {{ 'pages.reading.body_purpose' | translate }}
+  </h5>
+  <br>
+  <hr data-aos="fade-up" data-aos-delay="50"/>
+  <br>
+  <h1 id="CompetitionDate" style="padding-bottom: 2em" data-aos="fade-up" data-aos-delay="50">{{ 'pages.reading.nav_date' | translate }}</h1>
+  <h5 class="col text-dark" data-aos="fade-up" data-aos-delay="50">
+    {{ 'pages.reading.body_date' | translate }}
+  </h5>
+  <br>
+  <hr data-aos="fade-up" data-aos-delay="50"/>
+  <br>
+  <h1 id="RegistrationStages" style="padding-bottom: 2em" data-aos="fade-up" data-aos-delay="50">{{ 'pages.reading.nav_stages' | translate }}</h1>
+  <h5 class="col text-dark" data-aos="fade-up" data-aos-delay="50">
+    {{ 'pages.reading.body_stages' | translate }}
+  </h5>
+  <br>
+  <hr data-aos="fade-up" data-aos-delay="50"/>
+  <br>
+  <h1 id="RegistrationSteps" style="padding-bottom: 2em" data-aos="fade-up" data-aos-delay="50">{{ 'pages.reading.nav_steps' | translate }}</h1>
+  <h5 class="col text-dark" data-aos="fade-up" data-aos-delay="50">
+    {{ 'pages.reading.body_steps' | translate }}
+  </h5>
+  <!-- <br>
+  <hr data-aos="fade-up" data-aos-delay="50"/>
+  <br> -->
+  <!-- <h1 id="SchoolsSteps" style="padding-bottom: 2em" data-aos="fade-up" data-aos-delay="50">
+    خطوات مشاركة المدارس
+  </h1>
+  <h5 class="col text-dark" data-aos="fade-up" data-aos-delay="50">
+    {{ 'pages.reading.body_conditions' | translate }}
+  </h5>
+  <br>
+  <hr data-aos="fade-up" data-aos-delay="50"/>
+  <br>
+  <h1 style="padding-bottom: 2em" data-aos="fade-up" data-aos-delay="50">
+    طريقة تسجيل المدارس
+  </h1>
+  <h5 class="col text-dark" data-aos="fade-up" data-aos-delay="50">
+    <br>يجب تسجيل الطلاب من خلال مدارسهم والمشرفين عليهم. ويجب التأكد من أن البريد المستخدم صحيحاً وفعّالاً، مع ملاحظة أن بيانات المشرف المطلوب إدخالها في النموذج هو المشرف المسؤول عن المدرسة والذي سيصله بريد إلكتروني موضح به بيانات حساب المدرسة على نظام تحدي القراءة العربي.
+    <br>وستتمكن المدرسة من إضافة مشرفين آخرين لاحقا من خلال النظام الإلكتروني.
+    <br>ويتم التسجيل عبر أحد الإجراءات التالية
+    <br><br>• الدخول إلى صفحة التسجيل "من هنا" .
+    <br><br>• الضغط على اشترك الموجودة في الواجهة الرئيسية.
+    <br><br id="SignIn">• النقر على <a href="https://platform.arabreadingchallenge.com/" target="_blank">سجل الان</a>.
+    <br>وتحديد موقع المدرسة، من خلال:
+    <br><br>• الوطن العربي.
+    <br><br>• دولة أجنبية.
+  </h5>
+  <br>
+  <hr data-aos="fade-up" data-aos-delay="50"/>
+  <br>
+  <h1 style="padding-bottom: 2em" data-aos="fade-up" data-aos-delay="50">
+    تسجيل الدخول
+  </h1>
+  <h5 class="col text-dark" data-aos="fade-up" data-aos-delay="50">
+    <br>تتيح الجهات الناظمة تسجيل الدخول في تحدي القراءة العربي من خلال اتباع الخطوات التالية:
+    <br><br>• الدخول إلى صفحة تسجيل الدخول "<a href="https://platform.arabreadingchallenge.com/" target="_blank">من هنا</a>".
+    <br><br>• إدخال المعلومات المطلوبة، وهي:
+    <br><br>• البريد الإلكتروني.
+    <br><br>• كلمة المرور.
+    <br><br>• الرمز المرئي.
+    <br><br>• النقر على تسجيل الدخول.
+  </h5> -->
+  <br>
+  <hr data-aos="fade-up" data-aos-delay="50"/>
+  <br>
+  <h1 id="Conditions" style="padding-bottom: 2em" data-aos="fade-up" data-aos-delay="50">{{ 'pages.reading.nav_conditions' | translate }}</h1>
+  <h5 class="col text-dark" data-aos="fade-up" data-aos-delay="50">
+    {{ 'pages.reading.body_conditions' | translate }}
+  </h5>
+  <br>
+  <hr data-aos="fade-up" data-aos-delay="50"/>
+  <br>
+  <h1 id="BookConditions" style="padding-bottom: 2em" data-aos="fade-up" data-aos-delay="50">{{ 'pages.reading.nav_bookConditions' | translate }}</h1>
+  <h5 class="col text-dark text-end" data-aos="fade-up" data-aos-delay="50">
+    {{ 'pages.reading.body_bookConditions' | translate }}
+  </h5>
+  <br>
+  <hr data-aos="fade-up" data-aos-delay="50"/>
+  <br>
+  <h1 id="HowToWin" style="padding-bottom: 2em" data-aos="fade-up" data-aos-delay="50">{{ 'pages.reading.nav_howToWin' | translate }}</h1>
+  <h5 class="col text-dark text-end" data-aos="fade-up" data-aos-delay="50">
+    {{ 'pages.reading.body_howToWin' | translate }}
+  </h5>
+  <br>
+  <hr data-aos="fade-up" data-aos-delay="50"/>
+  <br>
+  <h1 id="SuggestedBooks" style="padding-bottom: 2em" data-aos="fade-up" data-aos-delay="50">{{ 'pages.reading.nav_suggested' | translate }}</h1>
+  <h5 class="col text-dark" data-aos="fade-up" data-aos-delay="50">
+    {{ 'pages.reading.body_suggested' | translate }}
+  </h5>
+  <br>
+  <hr data-aos="fade-up" data-aos-delay="50"/>
+  <br>
+  <h1 id="Contact" style="padding-bottom: 2em" data-aos="fade-up" data-aos-delay="50">{{ 'pages.reading.nav_contact' | translate }}</h1>
+  <h5 class="col text-dark" data-aos="fade-up" data-aos-delay="50">
+    <br>{{ 'pages.reading.body_contact' | translate }}
+    <br>• {{ 'pages.reading.contact_call' | translate }}
+    <br><a class="ltr-isolate" href="tel:00971507431963">+971 50 743 1963</a>
+    <br>• {{ 'pages.reading.contact_email' | translate }} <a href="mailto:elsayed.ta@baraemalain.com">elsayed.ta&#64;baraemalain.com</a>
+    <br> {{ 'pages.reading.contact_form' | translate }}
+    <br> <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSehq2Rl4NiBLmbKlA_hi794edkZvR0-20D0s5ZcyTZC0gKgGw/viewform?embedded=true" class="form" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+    <!-- <br>أو التواصل مباشرة مع التحدي على رقم الهاتف
+التالي: <br>0097146011050
+<br>(من الأحد حتى الخميس، من الساعة ٨ صباحاً إلى ٣ مساءً) أو من خلال البريد الإلكتروني على
+<br>register&#64;arabreadingchallenge.com :العنوان
+<br>للمزيد من المعلومات الرجاء زيارة الموقع
+<br>http://www.arabreadingchallenge.com/ الرسمي -->
+  </h5>
+  <br>
+  <hr data-aos="fade-up" data-aos-delay="50"/>
+  <br>
+  <h1 id="Mechanism" style="padding-bottom: 2em" data-aos="fade-up" data-aos-delay="50">{{ 'pages.reading.nav_mechanism' | translate }}</h1>
+  <h5 class="col text-dark" data-aos="fade-up" data-aos-delay="50">
+    {{ 'pages.reading.body_mechanism' | translate }}
+  </h5>
+  <br>
+  <hr data-aos="fade-up" data-aos-delay="50"/>
+  <br>
+  <h1 id="JudgingCriteria" style="padding-bottom: 2em" data-aos="fade-up" data-aos-delay="50">{{ 'pages.reading.nav_judging' | translate }}</h1>
+  <h5 class="col text-dark" data-aos="fade-up" data-aos-delay="50">
+    {{ 'pages.reading.body_judging' | translate }}
+  </h5>
+  <!-- <br>
+  <hr data-aos="fade-up" data-aos-delay="50"/>
+  <br>
+  <h1 id="Suggestions" style="padding-bottom: 2em" data-aos="fade-up" data-aos-delay="50">
+    أفكار ومقترحات
+  </h1>
+  <h5 class="col text-dark" data-aos="fade-up" data-aos-delay="50">
+    {{ 'pages.reading.body_mechanism' | translate }}
+  </h5> -->
+  <br>
+  <hr data-aos="fade-up" data-aos-delay="50"/>
+  <br>
+  <h1 id="FAQ" style="padding-bottom: 2em" data-aos="fade-up" data-aos-delay="50">{{ 'pages.reading.nav_faq' | translate }}</h1>
+  <h5 class="col text-dark" data-aos="fade-up" data-aos-delay="50">
+    {{ 'pages.reading.body_faq' | translate }}
+  </h5>
+  <br>
+  <hr data-aos="fade-up" data-aos-delay="50"/>
+  <br>
+  <h1 id="Links" style="padding-bottom: 2em" data-aos="fade-up" data-aos-delay="50">{{ 'pages.reading.nav_links' | translate }}</h1>
+  <h5 class="col text-dark" data-aos="fade-up" data-aos-delay="50">
+    <div class="row"  data-aos="fade-up" data-aos-delay="200" >
+      <div class="col">
+        <div class="d-grid gap-2">
+          <a class="btn btn-primary" type="button" href="https://www.electronicvillage.org/" target="_blank">
+            {{ 'pages.reading.link_village' | translate }}
+          </a>
+        </div>
+      </div>
+      <div class="col">
+        <div class="d-grid gap-2">
+          <a class="btn btn-primary" type="button" href="https://kalima.ae/" target="_blank">
+            {{ 'pages.reading.link_kalima' | translate }}
+          </a>
+        </div>
+      </div>
+      <div class="col">
+        <div class="d-grid gap-2">
+          <a class="btn btn-primary" type="button" href="https://culturalfoundation.ae/ar/childrenslibrary" target="_blank">
+            {{ 'pages.reading.link_abulib' | translate }}
+          </a>
+        </div>
+      </div>
+    </div>
+    <br><br>
+    <div class="row"  data-aos="fade-up" data-aos-delay="200" >
+      <div class="col">
+        <div class="d-grid gap-2">
+          <a class="btn btn-outline-primary" type="button" href="assets\Files\ReadingChallenge\204-2025دليل المشاركين الموسم التاسع.pdf" target="_blank">
+            {{ 'pages.reading.link_guide9' | translate }}
+          </a>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="row"  data-aos="fade-up" data-aos-delay="200" >
+      <div class="col">
+        <div class="d-grid gap-2">
+          <a class="btn btn-success" type="button" href="assets\Files\ReadingChallenge\معايير التحكيم2024- 2025.pdf" target="_blank">
+            {{ 'pages.reading.link_criteria' | translate }}
+          </a>
+        </div>
+      </div>
+      <div class="col">
+        <div class="d-grid gap-2">
+          <a class="btn btn-success" type="button" href="assets\Files\ReadingChallenge\نموذج التحكيم 2024-2025.pdf" target="_blank">
+            {{ 'pages.reading.link_form' | translate }}
+          </a>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="row"  data-aos="fade-up" data-aos-delay="200" >
+      <div class="col">
+        <div class="d-grid gap-2">
+          <a class="btn btn-outline-success" type="button" href="assets\Files\ReadingChallenge\مصفوفة تقدير العلامات - أصحاب الهمم .pdf" target="_blank">{{ 'pages.reading.link_matrix_sn' | translate }}</a>
+        </div>
+      </div>
+      <div class="col">
+        <div class="d-grid gap-2">
+          <a class="btn btn-outline-success" type="button" href="assets\Files\ReadingChallenge\نموذج التحكيم أصحاب الهمم 2024-2025.pdf" target="_blank">
+            {{ 'pages.reading.link_form_sn' | translate }}
+          </a>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="row"  data-aos="fade-up" data-aos-delay="200" >
+
+      <div class="col">
+        <div class="d-grid gap-2">
+          <a class="btn btn-primary" type="button" href="https://activityplatform.adek.gov.ae/competition/....-.......-......./?lang=ar" target="_blank">
+            المكتبة الرقمية - دائرة التعليم والمعرفة
+          </a>
+        </div>
+      </div>
+    </div> -->
+    <br><br>
+    <div class="row"  data-aos="fade-up" data-aos-delay="200" >
+      <div class="col">
+        <div class="d-grid gap-2">
+          <a class="btn btn-outline-warning" type="button" href="assets\Files\ReadingChallenge\Golden passport.docx" target="_blank">
+            {{ 'pages.reading.pass_yellow' | translate }} (.docx)
+          </a>
+        </div>
+      </div>
+      <div class="col">
+        <div class="d-grid gap-2">
+          <a class="btn btn-outline-danger" type="button" href="assets\Files\ReadingChallenge\Red passport.docx" target="_blank">
+            {{ 'pages.reading.pass_red' | translate }} (.docx)
+          </a>
+        </div>
+      </div>
+      <div class="col">
+        <div class="d-grid gap-2">
+          <a class="btn btn-outline-secondary" type="button" href="assets\Files\ReadingChallenge\Silver Passport.docx" target="_blank">
+            {{ 'pages.reading.pass_silver' | translate }} (.docx)
+          </a>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="row"  data-aos="fade-up" data-aos-delay="200" >
+      <div class="col">
+        <div class="d-grid gap-2">
+          <a class="btn btn-warning text-light" type="button" href="assets\Files\ReadingChallenge\Golden passport.pdf" target="_blank">
+            {{ 'pages.reading.pass_yellow' | translate }} (.pdf)
+          </a>
+        </div>
+      </div>
+      <div class="col">
+        <div class="d-grid gap-2">
+          <a class="btn btn-danger" type="button" href="assets\Files\ReadingChallenge\Red passport.pdf" target="_blank">
+            {{ 'pages.reading.pass_red' | translate }} (.pdf)
+          </a>
+        </div>
+      </div>
+      <div class="col">
+        <div class="d-grid gap-2">
+          <a class="btn btn-secondary" type="button" href="assets\Files\ReadingChallenge\Silver Passport.pdf" target="_blank">
+            {{ 'pages.reading.pass_silver' | translate }} (.pdf)
+          </a>
+        </div>
+      </div>
+    </div>
+      <br>
+    <div class="row"  data-aos="fade-up" data-aos-delay="200" >
+      <div class="col">
+        <div class="d-grid gap-2">
+          <a class="btn btn-outline-success" type="button" href="assets\Files\ReadingChallenge\Green passport.docx" target="_blank">
+           {{ 'pages.reading.pass_green' | translate }} (.docx)
+          </a>
+        </div>
+      </div>
+      <div class="col">
+        <div class="d-grid gap-2">
+          <a class="btn btn-outline-primary" type="button" href="assets\Files\ReadingChallenge\Blue passport.docx" target="_blank">
+            {{ 'pages.reading.pass_blue' | translate }} (.docx)
+          </a>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="row"  data-aos="fade-up" data-aos-delay="200" >
+      <div class="col">
+        <div class="d-grid gap-2">
+          <a class="btn btn-success" type="button" href="assets\Files\ReadingChallenge\Green passport.pdf" target="_blank">
+            {{ 'pages.reading.pass_green' | translate }} (.pdf)
+          </a>
+        </div>
+      </div>
+      <div class="col">
+        <div class="d-grid gap-2">
+          <a class="btn btn-primary" type="button" href="assets\Files\ReadingChallenge\Blue passport.pdf" target="_blank">
+            {{ 'pages.reading.pass_blue' | translate }} (.pdf)
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </h5>
+  <br>
+  <hr data-aos="fade-up" data-aos-delay="50"/>
+  <br>
+
+      <br><br>
+</div>
+</section>

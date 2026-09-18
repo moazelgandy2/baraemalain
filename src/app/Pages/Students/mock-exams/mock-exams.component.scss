@@ -1,0 +1,155 @@
+// Ensure your component can access the Mentor theme's CSS variables.
+// These styles assume variables like --default-font, --heading-font, --accent-color, etc., are defined globally.
+
+.curriculum-page-wrapper { // New wrapper to apply overall page theme
+  font-family: var(--default-font, "Open Sans", sans-serif); // Fallback if var is not defined
+  background-color: var(--background-color, #f9f9f9); // Using light-background concept from Mentor
+  padding-top: 40px; // Adjusted from py-5 to just pt, pb will be on the last section
+  padding-bottom: 40px;
+}
+
+.page-title { // Styling the H1 "Curriculum Overview"
+  font-family: var(--heading-font, "Raleway", sans-serif);
+  color: var(--heading-color, #37423b);
+  font-weight: 700; // Common for page titles
+  // text-center and mb-5 are from Bootstrap classes in HTML, which is fine
+}
+
+.curriculum-section {
+  background-color: var(--surface-color, #ffffff); // Mentor's surface color for card-like elements
+  padding: 2rem;
+  border-radius: 5px; // Consistent with .courses .course-item
+  // Using a subtle border similar to Mentor's .courses .course-item or .why-us .icon-box
+  border: 1px solid color-mix(in srgb, var(--default-color, #455aa0), transparent 90%);
+  box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.08); // A softer shadow, inspired by .events .card-body but lighter
+
+  &:not(:last-child) {
+    margin-bottom: 2.5rem; // Space between MOE and AME sections
+  }
+}
+
+.section-title { // Styling the H2 titles "MOE Curriculum" and "AME Curriculum"
+  font-family: var(--heading-font, "Raleway", sans-serif);
+  color: var(--heading-color, #37423b); // Main heading color from Mentor
+  font-weight: 700; // Make it prominent
+  font-size: 1.75rem; // Suitable size for section headers
+  padding-bottom: 0.75rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+
+  // Inspired by Mentor's .section-title h2::after, but simplified for direct H2 styling
+  &::after {
+    content: "";
+    width: 80px;
+    height: 2px;
+    display: block;
+    background: var(--accent-color, #292652);
+    margin-top: 8px;
+  }
+}
+
+// --- Accordion Styling to match Mentor Theme ---
+
+.accordion-item {
+  // Using Mentor's typical border style for items
+  border: 1px solid color-mix(in srgb, var(--default-color, #455aa0), transparent 90%);
+  margin-bottom: 0.5rem;
+  border-radius: 4px; // Slight rounding
+  overflow: hidden; // Ensures child elements conform to border-radius
+
+  &:first-of-type {
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+  }
+  &:last-of-type {
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    margin-bottom: 0;
+  }
+}
+
+.accordion-button {
+  font-family: var(--nav-font, "Poppins", sans-serif); // Using nav-font for a bit more flair
+  font-weight: 500;
+  background-color: color-mix(in srgb, var(--default-color, #455aa0), transparent 95%); // Very light version of default-color
+  color: var(--default-color, #455aa0); // Default text color for collapsed state
+
+  // Remove Bootstrap's default box-shadow on focus, rely on Mentor's focus styles if any, or a subtle one
+  &:focus {
+    box-shadow: 0 0 0 0.2rem color-mix(in srgb, var(--accent-color, #292652), transparent 75%);
+  }
+
+  &:not(.collapsed) {
+    color: var(--contrast-color, #ffffff); // Contrast color for text on accent background
+    background-color: var(--accent-color, #292652); // Use accent color when expanded
+    box-shadow: inset 0 -1px 0 color-mix(in srgb, var(--contrast-color, #ffffff), transparent 87.5%); // Subtle inner shadow
+  }
+
+  // Arrow icon styling
+  &::after {
+    // Bootstrap's default arrow is an SVG, you can customize its color via --bs-accordion-btn-icon-active-color if needed
+    // Or replace with a Font Awesome icon if your Mentor theme uses it extensively for such indicators.
+  }
+}
+
+.accordion-body {
+  background-color: var(--surface-color, #ffffff); // Should be consistent with the section's surface
+  padding: 1.5rem;
+  font-family: var(--default-font, "Open Sans", sans-serif);
+
+  p {
+    margin-bottom: 1rem;
+    color: color-mix(in srgb, var(--default-color, #455aa0), transparent 20%); // Slightly lighter default color for paragraph text
+  }
+}
+
+// --- Subject Button Styling to match Mentor Theme ---
+.subjects-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem; // A bit more spacing
+}
+
+.btn-subject {
+  font-family: var(--default-font, "Open Sans", sans-serif);
+  background-color: var(--surface-color, #ffffff); // Start with surface color (usually white)
+  color: var(--accent-color, #292652); // Text is accent color (like an outline button)
+  border: 2px solid var(--accent-color, #292652); // Border is accent color
+  padding: 0.5rem 1rem;
+  border-radius: 50px; // Rounded buttons like .btn-getstarted or .read-more
+  transition: all 0.3s ease-in-out;
+  font-weight: 500;
+  font-size: 0.9rem;
+  text-align: center;
+
+  i { // Style for icons within buttons
+    margin-right: 0.35rem; // Space between icon and text
+    font-size: 1em;
+  }
+
+  &:hover,
+  &:focus {
+    background-color: var(--accent-color, #292652); // Fill with accent on hover
+    color: var(--contrast-color, #ffffff); // Text becomes contrast color
+    border-color: var(--accent-color, #292652); // Keep border color or make it slightly darker accent
+    transform: translateY(-2px); // Subtle lift effect
+    box-shadow: 0 4px 10px color-mix(in srgb, var(--accent-color, #292652), transparent 70%); // Softer shadow with accent hint
+  }
+}
+
+// Responsive adjustments (optional, Bootstrap handles a lot)
+@media (max-width: 768px) {
+  .curriculum-page-wrapper {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  .curriculum-section {
+    padding: 1.5rem;
+  }
+  .page-title { // Main H1 "Curriculum Overview"
+    font-size: 2rem; // Adjust for mobile
+  }
+  .section-title { // H2 for MOE/AME
+    font-size: 1.5rem; // Adjust for mobile
+  }
+}

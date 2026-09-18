@@ -1,0 +1,30 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* Bootstrap CSS is loaded via angular.json (bootstrap.min.css) — do not @import here (avoids double bundle). */
+
+/* Phase 2 RTL shell: fonts are loaded via <link> in src/index.html
+   (cleaner than SCSS @import: non-blocking, preconnect-friendly,
+   and avoids Sass @import ordering issues with Bootstrap). */
+
+header a{
+  text-decoration: none;
+}
+h5, p{
+  color: black;
+}
+
+/* ---- RTL-safe global layer (logical properties only) ---- */
+html[dir='rtl'] body {
+  font-family: 'Cairo', 'Tajawal', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
+
+html[dir='ltr'] body {
+  font-family: 'Poppins', 'Raleway', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Isolate Latin/numbers (phones, emails, LMS/PISA/TIMSS) inside RTL text. */
+.ltr-isolate {
+  direction: ltr;
+  unicode-bidi: isolate;
+  display: inline-block;
+}

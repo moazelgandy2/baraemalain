@@ -1,0 +1,57 @@
+<div class="curriculum-page-wrapper">
+  <div class="container curriculum-page py-5">
+    <br>
+  <h1 class="page-title text-center mb-5 p-3">
+    {{ 'pages.mockexams.title' | translate }}
+  </h1>
+<br>
+  <section class="curriculum-section mb-5">
+    <h2 class="section-title text-primary mb-4">{{ moeCurriculum.titleKey ? (moeCurriculum.titleKey | translate) : moeCurriculum.title }}</h2>
+    <div class="accordion" [id]="moeCurriculum.id">
+      <div *ngFor="let grade of moeCurriculum.grades; let i = index" class="accordion-item">
+        <h2 class="accordion-header" [id]="'heading' + grade.id">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse' + grade.id" aria-expanded="false" [attr.aria-controls]="'collapse' + grade.id">
+            {{ grade.nameKey ? (grade.nameKey | translate) : grade.name }}
+          </button>
+        </h2>
+        <div [id]="'collapse' + grade.id" class="accordion-collapse collapse" [attr.aria-labelledby]="'heading' + grade.id" [attr.data-bs-parent]="grade.parentId">
+          <div class="accordion-body">
+            <!-- <p>Please find the subjects for {{ grade.nameKey ? (grade.nameKey | translate) : grade.name }} below:</p> -->
+            <div class="subjects-container">
+              <a *ngFor="let subject of grade.subjects" [href]="subject.routerLink" target="_blank" class="btn btn-subject m-1">
+                <i *ngIf="subject.icon" [class]="subject.icon + ' me-2'"></i>
+                {{ subject.nameKey ? (subject.nameKey | translate) : subject.name }}
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="curriculum-section mb-5" dir="ltr">
+    <h2 class="section-title text-primary mb-4">{{ ameCurriculum.titleKey ? (ameCurriculum.titleKey | translate) : ameCurriculum.title }}</h2>
+    <div class="accordion" [id]="ameCurriculum.id">
+      <div *ngFor="let grade of ameCurriculum.grades; let i = index" class="accordion-item">
+        <h2 class="accordion-header" [id]="'heading' + grade.id">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse' + grade.id" aria-expanded="false" [attr.aria-controls]="'collapse' + grade.id">
+            {{ grade.nameKey ? (grade.nameKey | translate) : grade.name }}
+          </button>
+        </h2>
+        <div [id]="'collapse' + grade.id" class="accordion-collapse collapse" [attr.aria-labelledby]="'heading' + grade.id" [attr.data-bs-parent]="grade.parentId">
+          <div class="accordion-body">
+            <!-- <p>Please find the subjects for {{ grade.nameKey ? (grade.nameKey | translate) : grade.name }} below:</p> -->
+            <div class="subjects-container">
+              <a *ngFor="let subject of grade.subjects" [href]="subject.routerLink" target="_blank" class="btn btn-subject m-1">
+                <i *ngIf="subject.icon" [class]="subject.icon + ' me-2'"></i>
+                {{ subject.nameKey ? (subject.nameKey | translate) : subject.name }}
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+</div>

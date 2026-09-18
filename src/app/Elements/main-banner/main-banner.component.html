@@ -1,0 +1,122 @@
+<header id="header" class="header d-flex align-items-center sticky-top">
+  <div class="header-container container-fluid position-relative d-flex align-items-center">
+    <nav class="navbar navbar-expand-xl w-100" aria-label="Main navigation">
+      <a class="navbar-brand logo d-flex align-items-center flex-shrink-0" [routerLink]="'.'">
+        <img src="logo.png" alt="Baraem Al Ain logo" />
+        <span class="sitename text-nowrap" dir="auto">{{ 'nav.brandShort' | translate }}</span>
+      </a>
+
+      <button
+        class="navbar-toggler"
+        type="button"
+        (click)="isNavbarCollapsed = !isNavbarCollapsed"
+        [attr.aria-expanded]="!isNavbarCollapsed"
+        aria-controls="primaryNavbar"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="primaryNavbar" [ngbCollapse]="isNavbarCollapsed">
+        <ul class="navbar-nav align-items-xl-center">
+          <li class="nav-item" ngbDropdown>
+            <button type="button" class="nav-link dropdown-toggle" ngbDropdownToggle>
+              {{ 'nav.about' | translate }}
+            </button>
+            <div class="dropdown-menu" ngbDropdownMenu>
+              <button type="button" class="dropdown-item" ngbDropdownItem (click)="ChangePage('aboutSchool')">{{ 'nav.about_school' | translate }}</button>
+              <button type="button" class="dropdown-item" ngbDropdownItem (click)="ChangePage('vision')">{{ 'nav.vision' | translate }}</button>
+              <button type="button" class="dropdown-item" ngbDropdownItem (click)="ChangePage('principalWord')">{{ 'nav.principal_word' | translate }}</button>
+              <div class="dropdown-divider"></div>
+              <span class="dropdown-header">{{ 'nav.policies' | translate }}</span>
+              <a
+                *ngFor="let policy of policies"
+                class="dropdown-item"
+                [class.ltr-isolate]="policy.latin"
+                [href]="policy.href"
+                target="_blank"
+                rel="noopener"
+                >{{ policy.labelKey | translate }}</a
+              >
+            </div>
+          </li>
+
+          <li class="nav-item" ngbDropdown>
+            <button type="button" class="nav-link dropdown-toggle" ngbDropdownToggle>
+              {{ 'nav.admission' | translate }}
+            </button>
+            <div class="dropdown-menu" ngbDropdownMenu>
+              <button type="button" class="dropdown-item" ngbDropdownItem (click)="ChangePage('Requirements')">{{ 'nav.requirements' | translate }}</button>
+              <button type="button" class="dropdown-item" ngbDropdownItem (click)="ChangePage('tuition')">{{ 'nav.tuition' | translate }}</button>
+            </div>
+          </li>
+
+          <li class="nav-item" ngbDropdown>
+            <button type="button" class="nav-link dropdown-toggle" ngbDropdownToggle>
+              {{ 'nav.parents' | translate }}
+            </button>
+            <div class="dropdown-menu" ngbDropdownMenu>
+              <a class="dropdown-item" href="assets/Files/School Calendar.pdf" target="_blank" rel="noopener">{{ 'nav.calendar' | translate }}</a>
+              <a class="dropdown-item" href="assets/Files/الدليل الإرشادي لأولياء الأمور 2024-2025.pdf" target="_blank" rel="noopener">{{ 'nav.guide' | translate }} 2024-2025</a>
+            </div>
+          </li>
+
+          <li class="nav-item" ngbDropdown>
+            <button type="button" class="nav-link dropdown-toggle" ngbDropdownToggle>
+              {{ 'nav.students' | translate }}
+            </button>
+            <div class="dropdown-menu" ngbDropdownMenu>
+              <button type="button" class="dropdown-item" ngbDropdownItem (click)="ChangePage('schedule')">{{ 'nav.schedule' | translate }}</button>
+              <div class="dropdown-divider"></div>
+              <span class="dropdown-header">{{ 'nav.platforms' | translate }}</span>
+              <button
+                *ngFor="let app of eduApps"
+                type="button"
+                class="dropdown-item ltr-isolate"
+                ngbDropdownItem
+                (click)="ChangePage(app.page)"
+              >{{ app.label }}</button>
+              <div class="dropdown-divider"></div>
+              <span class="dropdown-header">{{ 'nav.intl_club' | translate }}</span>
+              <button
+                *ngFor="let test of intlTests"
+                type="button"
+                class="dropdown-item ltr-isolate"
+                ngbDropdownItem
+                (click)="ChangePage(test.page)"
+              >{{ test.label }}</button>
+              <div class="dropdown-divider"></div>
+              <button type="button" class="dropdown-item" ngbDropdownItem (click)="ChangePage('MockExams')">{{ 'nav.mockExams' | translate }}</button>
+              <button type="button" class="dropdown-item" ngbDropdownItem (click)="ChangePage('Gifted')">{{ 'nav.gifted' | translate }}</button>
+              <button type="button" class="dropdown-item" ngbDropdownItem (click)="ChangePage('events')">{{ 'nav.events' | translate }}</button>
+              <button type="button" class="dropdown-item" ngbDropdownItem (click)="ChangePage('ArabicReadingChallenge')">{{ 'nav.readingChallenge' | translate }}</button>
+              <button type="button" class="dropdown-item" ngbDropdownItem (click)="ChangePage('E-Library')">{{ 'nav.elibrary' | translate }}</button>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <button type="button" class="nav-link" (click)="ChangePage('NationalID')">{{ 'nav.nationalId' | translate }}</button>
+          </li>
+          <li class="nav-item">
+            <button type="button" class="nav-link" (click)="ChangePage('importantFiles')">{{ 'nav.importantFiles' | translate }}</button>
+          </li>
+          <li class="nav-item">
+            <button type="button" class="nav-link" (click)="ChangePage('grads')">{{ 'nav.graduates' | translate }}</button>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://www.baraemalainabudhabi.com/" target="_blank" rel="noopener">{{ 'nav.abuDhabiBranch' | translate }}</a>
+          </li>
+          <li class="nav-item">
+            <button type="button" class="nav-link" (click)="ChangePage('contact')">{{ 'nav.contact' | translate }}</button>
+          </li>
+        </ul>
+      </div>
+
+      <button
+        type="button"
+        class="btn btn-outline-primary btn-sm lang-toggle"
+        (click)="languageService.toggle()"
+      >{{ 'common.langToggle' | translate }}</button>
+    </nav>
+  </div>
+</header>

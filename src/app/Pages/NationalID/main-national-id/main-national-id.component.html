@@ -1,0 +1,70 @@
+<div class="page-title" data-aos="fade">
+  <div class="heading">
+    <div class="container">
+      <div class="row d-flex justify-content-center text-center">
+        <div class="col-lg-2 text-nowrap">
+          <h1>{{ 'pages.nationalId.title' | translate }}</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <nav class="breadcrumbs">
+    <div class="container">
+      <ol>
+        <li><a href="index.html">{{ 'common.breadcrumb_home' | translate }}</a></li>
+        <li class="current">{{ 'pages.nationalId.breadcrumb_current' | translate }}</li>
+      </ol>
+    </div>
+  </nav>
+</div>
+<section id="events" class="section about-us">
+  <div class="container text-center">
+    <h1 style="padding-bottom: 2em" data-aos="fade-up" data-aos-delay="100">
+      {{ 'pages.nationalId.axes_heading' | translate }}
+    </h1>
+    <br><br>
+    <h5 class="text-black">
+      {{ 'pages.nationalId.intro' | translate }}
+    </h5>
+    <br><br><br>
+    <div class="row gy-2 text-center" data-aos="fade-up" data-aos-delay="100">
+      <div class="row">
+        <div class="col">
+          <h5>{{ 'pages.nationalId.culture' | translate }}</h5>
+        </div>
+        <div class="col">
+          <h5>{{ 'pages.nationalId.values' | translate }}</h5>
+        </div>
+        <div class="col">
+          <h5>{{ 'pages.nationalId.citizenship' | translate }}</h5>
+        </div>
+      </div>
+      <br><br><br>
+      <div class="row">
+        <div class="col">
+          <div class="d-grid gap-2" data-aos="fade-up" data-aos-delay="100">
+            <a class="btn btn-primary" role="button" (click)="ChangePage('Arabic')">{{ 'pages.nationalId.arabic' | translate }}</a>
+            <a class="btn btn-primary" role="button" (click)="ChangePage('Heritage')">{{ 'pages.nationalId.heritage' | translate }}</a>
+            <a class="btn btn-primary" role="button" (click)="ChangePage('History')">{{ 'pages.nationalId.history' | translate }}</a>
+          </div>
+        </div>
+        <div class="col">
+          <div class="d-grid gap-2" data-aos="fade-up" data-aos-delay="100">
+            <a class="btn btn-secondary" role="button" (click)="ChangePage('Respect')">{{ 'pages.nationalId.respect' | translate }}</a>
+            <a class="btn btn-secondary" role="button" (click)="ChangePage('Compassion')">{{ 'pages.nationalId.compassion' | translate }}</a>
+            <a class="btn btn-secondary" role="button" (click)="ChangePage('GlobalUnderstanding')">{{ 'pages.nationalId.global' | translate }}</a>
+          </div>
+        </div>
+        <div class="col">
+          <div class="d-grid gap-2" data-aos="fade-up" data-aos-delay="100">
+            <a class="btn btn-success" role="button" (click)="ChangePage('Belonging')">{{ 'pages.nationalId.belonging' | translate }}</a>
+            <a class="btn btn-success" role="button" (click)="ChangePage('Volunteering')">{{ 'pages.nationalId.volunteering' | translate }}</a>
+            <a class="btn btn-success" role="button" (click)="ChangePage('Conservation')">{{ 'pages.nationalId.conservation' | translate }}</a>
+          </div>
+        </div>
+      </div>
+      <br><br><br>
+    </div>
+  </div>
+  <br><br><br><br><br>
+</section>

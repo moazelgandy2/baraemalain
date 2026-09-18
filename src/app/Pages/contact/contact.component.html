@@ -1,0 +1,101 @@
+<div class="page-title" data-aos="fade">
+  <div class="heading">
+    <div class="container">
+      <div class="row d-flex justify-content-center text-center">
+        <div class="col-lg-2 text-nowrap">
+          <h1>{{ 'pages.contact.title' | translate }}</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <nav class="breadcrumbs">
+    <div class="container">
+      <ol>
+        <li><a href="index.html">{{ 'common.breadcrumb_home' | translate }}</a></li>
+        <li class="current">{{ 'pages.contact.breadcrumb_current' | translate }}</li>
+      </ol>
+    </div>
+  </nav>
+</div>
+<br>
+
+<section id="contact" class="contact section">
+
+  <br>
+
+
+  <div class="container aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
+
+    <div class="row gy-4">
+
+      <div class="col-lg-4">
+
+
+
+        <a class="info-item d-flex btn" href="tel:0097137678848" data-aos="fade-up" data-aos-delay="300">
+          <i style="margin-left: 2em;" class="bi bi-telephone"></i>
+          <div>
+            <h3>{{ 'pages.contact.call_us' | translate }}</h3>
+            <p>8848 767 3 971+</p>
+          </div>
+        </a><!-- End Info Item -->
+
+        <a class="info-item d-flex btn" href="mailto:info@baraemalain.com" data-aos="fade-up" data-aos-delay="300">
+          <i style="margin-left: 2em;" class="bi bi-envelope-at"></i>
+          <div>
+            <h3>{{ 'pages.contact.inquiries' | translate }}</h3>
+            <p>info&#64;baraemalain.com</p>
+          </div>
+        </a><!-- End Info Item -->
+
+        <a class="info-item d-flex btn" href="mailto:complaint@baraemalain.com" data-aos="fade-up" data-aos-delay="300">
+          <i style="margin-left: 2em;" class="bi bi-envelope-exclamation"></i>
+          <div>
+            <h3>{{ 'pages.contact.complaints' | translate }}</h3>
+            <p>complaint&#64;baraemalain.com</p>
+          </div>
+        </a><!-- End Info Item -->
+
+      </div>
+
+      <div class="col-lg-8">
+        <form action="forms/contact.php" method="post" class="php-email-form aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
+          <div class="row gy-4">
+
+            <div class="col-md-6">
+              <input type="text" name="name" class="form-control" [placeholder]="'pages.contact.form_name' | translate" required="">
+            </div>
+
+            <div class="col-md-6 ">
+              <input type="email" class="form-control" name="email" [placeholder]="'pages.contact.form_email' | translate" required="">
+            </div>
+
+            <div class="col-md-12">
+              <input type="text" class="form-control" name="subject" [placeholder]="'pages.contact.form_subject' | translate" required="">
+            </div>
+
+            <div class="col-md-12">
+              <textarea class="form-control" name="message" rows="6" [placeholder]="'pages.contact.form_message' | translate" required=""></textarea>
+            </div>
+
+            <div class="col-md-12 text-center">
+              <div class="loading">{{ 'pages.contact.form_loading' | translate }}</div>
+              <div class="error-message"></div>
+              <div class="sent-message">{{ 'pages.contact.form_sent' | translate }}</div>
+
+              <button type="submit">{{ 'pages.contact.form_send' | translate }}</button>
+            </div>
+
+          </div>
+        </form>
+      </div><!-- End Contact Form -->
+      <br>
+
+    </div>
+    <br>
+  </div>
+  <br>
+  <div class="mb-5" data-aos="fade-up" data-aos-delay="200">
+    <iframe style="border:0; width: 100%; height: 300px;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d909.7708442246892!2d55.72276002229055!3d24.20385930995176!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e8ab105708ec94f%3A0x836ee3a7881d8f05!2sBaraem%20Al%20Ain%20Private%20School!5e0!3m2!1sen!2sae!4v1728162265880!5m2!1sen!2sae" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+   </div><!-- End Google Maps -->
+</section><!-- /Contact Section -->

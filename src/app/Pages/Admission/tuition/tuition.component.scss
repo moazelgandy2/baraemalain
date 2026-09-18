@@ -1,0 +1,96 @@
+.tuition-section {
+  padding-top: 32px;
+  padding-bottom: 56px;
+}
+
+.tuition-subtitle {
+  font-size: 1.05rem;
+  color: #3a3a3a;
+  margin-bottom: 24px;
+}
+
+.pdf-viewer {
+  border: 1px solid #d9dee5;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #525659;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
+  margin: 0 auto;
+  max-width: 1180px;
+}
+
+.pdf-viewer-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #323639;
+  color: #fff;
+  padding: 10px 16px;
+  font-size: 0.9rem;
+}
+
+.pdf-viewer-title {
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pdf-viewer-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.pdf-icon-btn {
+  color: #fff;
+  opacity: 0.9;
+  font-size: 1.05rem;
+  line-height: 1;
+}
+
+.pdf-icon-btn:hover {
+  color: #fff;
+  opacity: 1;
+}
+
+.pdf-frame {
+  display: block;
+  width: 100%;
+  height: min(78vh, 860px);
+  min-height: 520px;
+  border: 0;
+  background: #fff;
+}
+
+.tuition-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 22px;
+}
+
+.tuition-btn {
+  min-width: 170px;
+  border-radius: 8px;
+  padding: 8px 26px;
+  font-weight: 600;
+}
+
+.tuition-note {
+  margin-top: 16px;
+  color: #6c757d;
+  font-size: 0.92rem;
+}
+
+@media (max-width: 576px) {
+  .pdf-frame {
+    min-height: 420px;
+    height: 70vh;
+  }
+
+  .tuition-btn {
+    width: 100%;
+    min-width: 0;
+  }
+}

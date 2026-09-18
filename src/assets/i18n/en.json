@@ -113,8 +113,12 @@
       "closing": "We look forward to welcoming your children and working together for the best learning experience."
     },
     "tuition": {
-      "title": "Tuition Fees 2026-2027",
-      "breadcrumb_current": "Tuition Fees 2026-2027",
+      "title": "Tuition Fees",
+      "breadcrumb_current": "Tuition Fees",
+      "subtitle": "View the official tuition fee schedule for the academic year.",
+      "view_document": "View Document",
+      "download_pdf": "Download PDF File",
+      "contact_note": "For inquiries, please contact the school accounts department.",
       "notice_1": "Tuition fees for the 2025-2026 school year have been revised and will be announced soon.",
       "notice_2": "You may contact the school accounts department for any tuition inquiries."
     },
@@ -417,7 +421,7 @@
       "title": "IBT Exam",
       "breadcrumb_current": "IBT Exam",
       "subtitle": "International Benchmark Test",
-      "target_text": "Grades 3 to 10",
+      "target_text": "Grades 3 to 9",
       "subjects": "Subjects",
       "science": "Science",
       "math": "Mathematics",

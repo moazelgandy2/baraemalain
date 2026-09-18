@@ -17,229 +17,42 @@
     </div>
   </nav>
 </div>
-<section id="tuition-fees" class="section about-us">
-  <div class="container text-center" style="font-size: 2vw;">
-    <p>
-      {{ 'pages.tuition.notice_1' | translate }}
+
+<section id="tuition-fees" class="section tuition-section">
+  <div class="container" data-aos="fade-up" data-aos-delay="100">
+    <p class="tuition-subtitle text-center">
+      {{ 'pages.tuition.subtitle' | translate }}
     </p>
-    <br>
-    <p>
-      {{ 'pages.tuition.notice_2' | translate }}
+
+    <div class="pdf-viewer" data-aos="fade-up" data-aos-delay="200">
+      <div class="pdf-viewer-bar">
+        <span class="pdf-viewer-title">School Price List.pdf</span>
+        <span class="pdf-viewer-actions">
+          <a class="pdf-icon-btn" [href]="pdfPath" target="_blank" rel="noopener"
+            [title]="'pages.tuition.view_document' | translate">
+            <i class="bi bi-box-arrow-up-right"></i>
+          </a>
+          <a class="pdf-icon-btn" [href]="pdfPath" download
+            [title]="'pages.tuition.download_pdf' | translate">
+            <i class="bi bi-download"></i>
+          </a>
+        </span>
+      </div>
+      <iframe [src]="safePdfUrl" class="pdf-frame" title="School Price List"
+        loading="lazy"></iframe>
+    </div>
+
+    <div class="tuition-actions text-center">
+      <a class="btn btn-outline-primary tuition-btn" [href]="pdfPath" download>
+        {{ 'pages.tuition.download_pdf' | translate }}
+      </a>
+      <a class="btn btn-primary tuition-btn" [href]="pdfPath" target="_blank" rel="noopener">
+        {{ 'pages.tuition.view_document' | translate }}
+      </a>
+    </div>
+
+    <p class="tuition-note text-center">
+      {{ 'pages.tuition.contact_note' | translate }}
     </p>
   </div>
 </section>
-<!-- <div>
-  <h3 style="padding-bottom: 2em" data-aos="fade-up" data-aos-delay="100">
-      القسم الوزاري
-    </h3>
-    <table class="table table-bordered table-hover"  data-aos="fade-up" data-aos-delay="100">
-      <thead class="table-dark">
-        <tr>
-          <th scope="row">الصف</th>
-          <td>الرسوم الدراسیة</td>
-          <td>رسوم الكتب</td>
-          <td>رسوم المواصلات</td>
-          <td>رسوم الزي</td>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th scope="row" class="table-dark">الروضة الأولى</th>
-          <td>3,880</td>
-          <td>300</td>
-          <td>2,600</td>
-          <td>100</td>
-        </tr>
-        <tr>
-          <th scope="row" class="table-dark">الروضة الثانية</th>
-          <td>4,400</td>
-          <td>330</td>
-          <td>2,600</td>
-          <td>100</td>
-        </tr>
-        <tr>
-          <th scope="row" class="table-dark">الصف الأول</th>
-          <td>4,920</td>
-          <td>735</td>
-          <td>2,600</td>
-          <td>100</td>
-        </tr>
-        <tr>
-          <th scope="row" class="table-dark">الصف الثاني</th>
-          <td>5,860</td>
-          <td>755</td>
-          <td>2,600</td>
-          <td>100</td>
-        </tr>
-        <tr>
-          <th scope="row" class="table-dark">الصف الثالث</th>
-          <td>6,880</td>
-          <td>775</td>
-          <td>2,600</td>
-          <td>100</td>
-        </tr>
-        <tr>
-          <th scope="row" class="table-dark">الصف الرابع</th>
-          <td>7,400</td>
-          <td>790</td>
-          <td>2,600</td>
-          <td>100</td>
-        </tr>
-        <tr>
-          <th scope="row" class="table-dark">الصف الخامس</th>
-          <td>7,920</td>
-          <td>795</td>
-          <td>2,600</td>
-          <td>100</td>
-        </tr>
-        <tr>
-          <th scope="row" class="table-dark">الصف السادس</th>
-          <td>8,340</td>
-          <td>790</td>
-          <td>2,600</td>
-          <td>100</td>
-        </tr>
-        <tr>
-          <th scope="row" class="table-dark">الصف السابع</th>
-          <td>8,760</td>
-          <td>855</td>
-          <td>2,600</td>
-          <td>100</td>
-        </tr>
-        <tr>
-          <th scope="row" class="table-dark">الصف الثامن</th>
-          <td>9,280</td>
-          <td>850</td>
-          <td>2,600</td>
-          <td>100</td>
-        </tr>
-        <tr class=" align-middle">
-          <th scope="row" class="table-dark">الصف التاسع</th>
-          <td>9,800</td>
-          <td>
-            <p>عام: 890</p>
-            متقدم: 890
-          </td>
-          <td>2,600</td>
-          <td>100</td>
-        </tr>
-        <tr class=" align-middle">
-          <th scope="row" class="table-dark">الصف العاشر</th>
-          <td>9,940</td>
-          <td>
-            <p>عام: 930</p>
-            متقدم: 915
-          </td>
-          <td>2,600</td>
-          <td>100</td>
-        </tr>
-        <tr class=" align-middle">
-          <th scope="row" class="table-dark">الصف الحادي عشر</th>
-          <td>10,260</td>
-          <td>
-            <p>عام: 1,020</p>
-            متقدم: 1,150
-          </td>
-          <td>2,600</td>
-          <td>100</td>
-        </tr>
-        <tr class=" align-middle">
-          <th scope="row" class="table-dark">الصف الثاني عشر</th>
-          <td>10,260</td>
-          <td>
-            <p>عام: 1,115</p>
-            متقدم: 1,165
-          </td>
-          <td>2,600</td>
-          <td>100</td>
-        </tr>
-      </tbody>
-    </table>
-    <br>
-    <h3 style="padding-bottom: 2em" data-aos="fade-up" data-aos-delay="100">
-      القسم الأمريكي (American Section)
-    </h3>
-    <table class="table table-bordered table-hover" dir="ltr" data-aos="fade-up" data-aos-delay="100">
-      <thead class="table-dark">
-        <tr>
-          <th scope="row">Grade</th>
-          <td>Tuition</td>
-          <td>Books</td>
-          <td>Buses</td>
-          <td>Uniform</td>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th scope="row" class="table-dark">KG 1</th>
-          <td>4,400</td>
-          <td>425</td>
-          <td>2,600</td>
-          <td>200</td>
-        </tr>
-        <tr>
-          <th scope="row" class="table-dark">KG 2</th>
-          <td>4,920</td>
-          <td>425</td>
-          <td>2,600</td>
-          <td>200</td>
-        </tr>
-        <tr>
-          <th scope="row" class="table-dark">Grade 1</th>
-          <td>5,440</td>
-          <td>900</td>
-          <td>2,600</td>
-          <td>200</td>
-        </tr>
-        <tr>
-          <th scope="row" class="table-dark">Grade 2</th>
-          <td>5,960</td>
-          <td>900</td>
-          <td>2,600</td>
-          <td>200</td>
-        </tr>
-        <tr>
-          <th scope="row" class="table-dark">Grade 3</th>
-          <td>6,560</td>
-          <td>1,040</td>
-          <td>2,600</td>
-          <td>200</td>
-        </tr>
-        <tr>
-          <th scope="row" class="table-dark">Grade 4</th>
-          <td>7,080</td>
-          <td>1,120</td>
-          <td>2,600</td>
-          <td>200</td>
-        </tr>
-        <tr>
-          <th scope="row" class="table-dark">Grade 5</th>
-          <td>7,710</td>
-          <td>1,180</td>
-          <td>2,600</td>
-          <td>200</td>
-        </tr>
-        <tr>
-          <th scope="row" class="table-dark">Grade 6</th>
-          <td>8,240</td>
-          <td>1,200</td>
-          <td>2,600</td>
-          <td>200</td>
-        </tr>
-        <tr>
-          <th scope="row" class="table-dark">Grade 7</th>
-          <td>8,760</td>
-          <td>1,200</td>
-          <td>2,600</td>
-          <td>200</td>
-        </tr>
-        <tr>
-          <th scope="row" class="table-dark">Grade 8</th>
-          <td>9,280</td>
-          <td>1,200</td>
-          <td>2,600</td>
-          <td>200</td>
-        </tr>
-      </tbody>
-    </table>
-</div> -->

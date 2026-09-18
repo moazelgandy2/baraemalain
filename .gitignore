@@ -63,3 +63,8 @@ coverage/
 *.rar
 *.zip
 *.7z
+
+# Large image assets
+src/assets/img/National ID/
+src/assets/img/20241008_*.jpg
+src/assets/img/Grads/

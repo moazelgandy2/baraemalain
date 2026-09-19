@@ -28,7 +28,7 @@
 
       <div class="collapse navbar-collapse desktop-menu" id="primaryNavbar">
         <ul class="navbar-nav align-items-xl-center">
-          <li class="nav-item" ngbDropdown>
+          <li class="nav-item" ngbDropdown (openChange)="onTopMenuOpen($event)">
             <button
               type="button"
               class="nav-link dropdown-toggle"
@@ -37,47 +37,13 @@
               {{ "nav.about" | translate }}
             </button>
             <div class="dropdown-menu" ngbDropdownMenu>
-              <button
-                type="button"
-                class="dropdown-item"
-                ngbDropdownItem
-                (click)="ChangePage('aboutSchool')"
-              >
-                {{ "nav.about_school" | translate }}
-              </button>
-              <button
-                type="button"
-                class="dropdown-item"
-                ngbDropdownItem
-                (click)="ChangePage('vision')"
-              >
-                {{ "nav.vision" | translate }}
-              </button>
-              <button
-                type="button"
-                class="dropdown-item"
-                ngbDropdownItem
-                (click)="ChangePage('principalWord')"
-              >
-                {{ "nav.principal_word" | translate }}
-              </button>
-              <div class="dropdown-divider"></div>
-              <span class="dropdown-header">{{
-                "nav.policies" | translate
-              }}</span>
-              <a
-                *ngFor="let policy of policies"
-                class="dropdown-item"
-                [class.ltr-isolate]="policy.latin"
-                [href]="policy.href"
-                target="_blank"
-                rel="noopener"
-                >{{ policy.labelKey | translate }}</a
-              >
+              <ng-container
+                *ngTemplateOutlet="desktopBranch; context: { $implicit: aboutMenu }"
+              ></ng-container>
             </div>
           </li>
 
-          <li class="nav-item" ngbDropdown>
+          <li class="nav-item" ngbDropdown (openChange)="onTopMenuOpen($event)">
             <button
               type="button"
               class="nav-link dropdown-toggle"
@@ -86,26 +52,13 @@
               {{ "nav.admission" | translate }}
             </button>
             <div class="dropdown-menu" ngbDropdownMenu>
-              <button
-                type="button"
-                class="dropdown-item"
-                ngbDropdownItem
-                (click)="ChangePage('Requirements')"
-              >
-                {{ "nav.requirements" | translate }}
-              </button>
-              <button
-                type="button"
-                class="dropdown-item"
-                ngbDropdownItem
-                (click)="ChangePage('tuition')"
-              >
-                {{ "nav.tuition" | translate }}
-              </button>
+              <ng-container
+                *ngTemplateOutlet="desktopBranch; context: { $implicit: admissionMenu }"
+              ></ng-container>
             </div>
           </li>
 
-          <li class="nav-item" ngbDropdown>
+          <li class="nav-item" ngbDropdown (openChange)="onTopMenuOpen($event)">
             <button
               type="button"
               class="nav-link dropdown-toggle"
@@ -114,24 +67,13 @@
               {{ "nav.parents" | translate }}
             </button>
             <div class="dropdown-menu" ngbDropdownMenu>
-              <a
-                class="dropdown-item"
-                href="assets/Files/School Calendar.pdf"
-                target="_blank"
-                rel="noopener"
-                >{{ "nav.calendar" | translate }}</a
-              >
-              <button
-                type="button"
-                class="dropdown-item"
-                ngbDropdownItem
-                (click)="ChangePage('guide')"
-                >{{ "nav.guide" | translate }} 2026-2027</button
-              >
+              <ng-container
+                *ngTemplateOutlet="desktopBranch; context: { $implicit: parentsMenu }"
+              ></ng-container>
             </div>
           </li>
 
-          <li class="nav-item" ngbDropdown>
+          <li class="nav-item" ngbDropdown (openChange)="onTopMenuOpen($event)">
             <button
               type="button"
               class="nav-link dropdown-toggle"
@@ -140,81 +82,9 @@
               {{ "nav.students" | translate }}
             </button>
             <div class="dropdown-menu" ngbDropdownMenu>
-              <button
-                type="button"
-                class="dropdown-item"
-                ngbDropdownItem
-                (click)="ChangePage('schedule')"
-              >
-                {{ "nav.schedule" | translate }}
-              </button>
-              <div class="dropdown-divider"></div>
-              <span class="dropdown-header">{{
-                "nav.platforms" | translate
-              }}</span>
-              <button
-                *ngFor="let app of eduApps"
-                type="button"
-                class="dropdown-item ltr-isolate"
-                ngbDropdownItem
-                (click)="ChangePage(app.page)"
-              >
-                {{ app.label }}
-              </button>
-              <div class="dropdown-divider"></div>
-              <span class="dropdown-header">{{
-                "nav.intl_club" | translate
-              }}</span>
-              <button
-                *ngFor="let test of intlTests"
-                type="button"
-                class="dropdown-item ltr-isolate"
-                ngbDropdownItem
-                (click)="ChangePage(test.page)"
-              >
-                {{ test.label }}
-              </button>
-              <div class="dropdown-divider"></div>
-              <button
-                type="button"
-                class="dropdown-item"
-                ngbDropdownItem
-                (click)="ChangePage('MockExams')"
-              >
-                {{ "nav.mockExams" | translate }}
-              </button>
-              <button
-                type="button"
-                class="dropdown-item"
-                ngbDropdownItem
-                (click)="ChangePage('Gifted')"
-              >
-                {{ "nav.gifted" | translate }}
-              </button>
-              <button
-                type="button"
-                class="dropdown-item"
-                ngbDropdownItem
-                (click)="ChangePage('events')"
-              >
-                {{ "nav.events" | translate }}
-              </button>
-              <button
-                type="button"
-                class="dropdown-item"
-                ngbDropdownItem
-                (click)="ChangePage('ArabicReadingChallenge')"
-              >
-                {{ "nav.readingChallenge" | translate }}
-              </button>
-              <button
-                type="button"
-                class="dropdown-item"
-                ngbDropdownItem
-                (click)="ChangePage('E-Library')"
-              >
-                {{ "nav.elibrary" | translate }}
-              </button>
+              <ng-container
+                *ngTemplateOutlet="desktopBranch; context: { $implicit: studentsMenu }"
+              ></ng-container>
             </div>
           </li>
 
@@ -277,6 +147,69 @@
   </div>
 
   <!-- Mobile backdrop (click to close) -->
+  <!-- Recursive desktop flyout branch: renders any depth of NavItem nodes.
+       Group headers expand a side flyout (hover on mouse, tap on touch,
+       Enter/Space on keyboard); leaves navigate or open links. -->
+  <ng-template #desktopBranch let-nodes>
+    <ng-container *ngFor="let node of nodes; trackBy: trackNode">
+      <div
+        *ngIf="node.children?.length; else desktopLeaf"
+        class="submenu-wrap"
+        [class.open]="isBranchOpen(node.id)"
+        (mouseenter)="openNode(node.id)"
+        (mouseleave)="closeBranch(node.id)"
+      >
+        <button
+          type="button"
+          class="dropdown-item submenu-toggle"
+          ngbDropdownItem
+          aria-haspopup="true"
+          [attr.aria-expanded]="isBranchOpen(node.id)"
+          (click)="onGroupClick(node, $event)"
+        >
+          <span class="submenu-label">{{
+            node.labelKey ? (node.labelKey | translate) : node.label
+          }}</span>
+          <i class="bi bi-chevron-left submenu-caret" aria-hidden="true"></i>
+        </button>
+        <div class="dropdown-menu submenu" [class.show]="isBranchOpen(node.id)">
+          <ng-container
+            *ngTemplateOutlet="
+              desktopBranch;
+              context: { $implicit: node.children }
+            "
+          ></ng-container>
+        </div>
+      </div>
+      <ng-template #desktopLeaf>
+        <button
+          *ngIf="node.page; else desktopExt"
+          type="button"
+          class="dropdown-item"
+          ngbDropdownItem
+          [class.ltr-isolate]="node.latin"
+          (click)="onLeafSelect(node.page)"
+        >
+          {{
+            node.labelKey ? (node.labelKey | translate) : node.label
+          }}{{ node.suffix ?? "" }}</button
+        >
+        <ng-template #desktopExt>
+          <a
+            class="dropdown-item"
+            [class.ltr-isolate]="node.latin"
+            [href]="node.href"
+            target="_blank"
+            rel="noopener"
+            (click)="closeAllBranches()"
+            >{{
+              node.labelKey ? (node.labelKey | translate) : node.label
+            }}{{ node.suffix ?? "" }}</a
+          >
+        </ng-template>
+      </ng-template>
+    </ng-container>
+  </ng-template>
   <div
     class="drawer-backdrop"
     [class.open]="!isNavbarCollapsed"

@@ -634,8 +634,91 @@ header {
   }
 
   .navbar-nav .dropdown-menu {
-    max-block-size: 70vh;
+    /* Must stay visible: any non-visible overflow on this ancestor clips
+       absolutely-positioned side flyouts and traps them inside the menu.
+       Top-level menus are short now (groups live in flyouts), so no scroll
+       is needed here; long groups scroll inside their own flyout. */
+    max-block-size: none;
+    overflow: visible;
+  }
+
+  /* ---------- Expandable flyout submenus (any depth, desktop) ---------- */
+  .desktop-menu .submenu-wrap {
+    position: relative;
+  }
+
+  .desktop-menu .submenu-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    inline-size: 100%;
+    background: transparent;
+    border: 0;
+    text-align: start;
+    cursor: pointer;
+  }
+
+  .desktop-menu .submenu-label {
+    flex: 1 1 auto;
+    min-inline-size: 0;
+  }
+
+  /* Chevron points toward inline-end: left in RTL, mirrored in LTR. */
+  .desktop-menu .submenu-caret {
+    font-size: 0.7rem;
+    opacity: 0.55;
+    flex-shrink: 0;
+  }
+
+  :host-context([dir="ltr"]) .desktop-menu .submenu-caret {
+    transform: scaleX(-1);
+  }
+
+  /* Flyout opens to the inline-end side (left in RTL, right in LTR).
+     Always in the DOM (no *ngIf churn on hover); visibility is pure
+     opacity/visibility so open/close never triggers layout. */
+  .desktop-menu .dropdown-menu.submenu {
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline-start: 100%;
+    margin: 0;
+    display: block;
+    max-block-size: 65vh;
     overflow-y: auto;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.15s ease, visibility 0s linear 0.15s;
+  }
+
+  /* NOTE: a submenu with its own scrollbar clips flyouts deeper than one
+     level past it (overflow-y:auto forces overflow-x to auto). Depth beyond
+     that still renders correctly in the data model, just without flyout. */
+  .desktop-menu .submenu-wrap.open > .dropdown-menu.submenu,
+  .desktop-menu .submenu-wrap:hover > .dropdown-menu.submenu,
+  .desktop-menu .submenu-wrap:focus-within > .dropdown-menu.submenu {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition: opacity 0.15s ease, visibility 0s linear 0s;
+  }
+
+  /* Keep the expanded parent highlighted, matching hover. */
+  .desktop-menu .submenu-toggle[aria-expanded="true"] {
+    background-color: #eef0ff;
+    color: #2438ff;
+  }
+
+  .desktop-menu .submenu-toggle:focus-visible {
+    outline: 2px solid #2438ff;
+    outline-offset: -2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .desktop-menu .dropdown-menu.submenu {
+      transition: none;
+    }
   }
 }
 

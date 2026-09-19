@@ -22,6 +22,24 @@ export interface NavPage {
   label: string;
 }
 
+/**
+ * Recursive desktop-nav node. A node with `children` renders as an expandable
+ * flyout group; a node with `page` navigates internally; a node with `href`
+ * opens an external/asset link. Depth is unlimited — the template recurses.
+ */
+export interface NavItem {
+  /** Dotted path id, e.g. `students.platforms.lms` (used for open-state). */
+  id: string;
+  labelKey?: string;
+  label?: string;
+  /** Static suffix appended after the label (e.g. a year range). */
+  suffix?: string;
+  page?: string;
+  href?: string;
+  latin?: boolean;
+  children?: NavItem[];
+}
+
 @Component({
   selector: "app-main-banner",
   templateUrl: "./main-banner.component.html",
@@ -148,6 +166,87 @@ export class MainBannerComponent implements OnDestroy {
     { page: "PIRLS", label: "PIRLS" },
   ];
 
+  /** Desktop dropdown trees — built from the same source arrays as mobile. */
+  aboutMenu: NavItem[] = [
+    { id: "about.school", labelKey: "nav.about_school", page: "aboutSchool" },
+    { id: "about.vision", labelKey: "nav.vision", page: "vision" },
+    {
+      id: "about.principal",
+      labelKey: "nav.principal_word",
+      page: "principalWord",
+    },
+    {
+      id: "about.policies",
+      labelKey: "nav.policies",
+      children: this.policies.map((policy) => ({
+        id: `about.policies.${policy.labelKey}`,
+        labelKey: policy.labelKey,
+        href: policy.href,
+        latin: policy.latin,
+      })),
+    },
+  ];
+
+  admissionMenu: NavItem[] = [
+    {
+      id: "admission.requirements",
+      labelKey: "nav.requirements",
+      page: "Requirements",
+    },
+    { id: "admission.tuition", labelKey: "nav.tuition", page: "tuition" },
+  ];
+
+  parentsMenu: NavItem[] = [
+    {
+      id: "parents.calendar",
+      labelKey: "nav.calendar",
+      href: "assets/Files/School Calendar.pdf",
+    },
+    {
+      id: "parents.guide",
+      labelKey: "nav.guide",
+      suffix: " 2026-2027",
+      page: "guide",
+    },
+  ];
+
+  studentsMenu: NavItem[] = [
+    { id: "students.schedule", labelKey: "nav.schedule", page: "schedule" },
+    {
+      id: "students.platforms",
+      labelKey: "nav.platforms",
+      children: this.eduApps.map((app) => ({
+        id: `students.platforms.${app.page}`,
+        label: app.label,
+        page: app.page,
+        latin: true,
+      })),
+    },
+    {
+      id: "students.intl",
+      labelKey: "nav.intl_club",
+      children: this.intlTests.map((test) => ({
+        id: `students.intl.${test.page}`,
+        label: test.label,
+        page: test.page,
+        latin: true,
+      })),
+    },
+    { id: "students.mock", labelKey: "nav.mockExams", page: "MockExams" },
+    { id: "students.gifted", labelKey: "nav.gifted", page: "Gifted" },
+    { id: "students.events", labelKey: "nav.events", page: "events" },
+    {
+      id: "students.reading",
+      labelKey: "nav.readingChallenge",
+      page: "ArabicReadingChallenge",
+    },
+    { id: "students.elibrary", labelKey: "nav.elibrary", page: "E-Library" },
+  ];
+
+  /** Ids of currently expanded flyout branches (dotted path ids). */
+  private readonly openBranches = new Set<string>();
+  private hoverCapable: boolean | null = null;
+
   constructor(
     public readonly languageService: LanguageService,
     @Inject(DOCUMENT) private readonly document: Document,
@@ -268,5 +367,92 @@ export class MainBannerComponent implements OnDestroy {
     this.PageEvent.emit(page);
     this.closeMenu();
     console.log(page, " Child");
+  }
+
+  // ---------- Expandable desktop flyouts (any depth) ----------
+
+  trackNode(_index: number, node: NavItem): string {
+    return node.id;
+  }
+
+  isBranchOpen(id: string): boolean {
+    return this.openBranches.has(id);
+  }
+
+  private parentOf(id: string): string | null {
+    const dot = id.lastIndexOf(".");
+    return dot < 0 ? null : id.slice(0, dot);
+  }
+
+  /** Open a branch, closing any open sibling at the same level. */
+  openNode(id: string): void {
+    if (this.openBranches.has(id)) {
+      return;
+    }
+    const parent = this.parentOf(id);
+    for (const key of Array.from(this.openBranches)) {
+      if (this.parentOf(key) === parent) {
+        this.closeBranch(key);
+      }
+    }
+    this.openBranches.add(id);
+  }
+
+  /** Close a branch and all of its descendants. */
+  closeBranch(id: string): void {
+    for (const key of Array.from(this.openBranches)) {
+      if (key === id || key.startsWith(id + ".")) {
+        this.openBranches.delete(key);
+      }
+    }
+  }
+
+  closeAllBranches(): void {
+    this.openBranches.clear();
+  }
+
+  /**
+   * Group-header activation. Hover (mouse) is handled by mouseenter, so:
+   * keyboard (click with detail 0) toggles, touch (no hover) toggles,
+   * mouse click just ensures open. stopPropagation keeps ngbDropdown open.
+   */
+  onGroupClick(node: NavItem, event: MouseEvent): void {
+    event.stopPropagation();
+    event.preventDefault();
+    if (event.detail === 0 || !this.isHoverCapable()) {
+      if (this.isBranchOpen(node.id)) {
+        this.closeBranch(node.id);
+      } else {
+        this.openNode(node.id);
+      }
+    } else {
+      this.openNode(node.id);
+    }
+  }
+
+  onLeafSelect(page: string | undefined): void {
+    if (!page) {
+      return;
+    }
+    this.closeAllBranches();
+    this.ChangePage(page);
+  }
+
+  /** Reset flyout state whenever a top-level dropdown closes. */
+  onTopMenuOpen(open: boolean): void {
+    if (!open) {
+      this.closeAllBranches();
+    }
+  }
+
+  private isHoverCapable(): boolean {
+    if (this.hoverCapable === null) {
+      try {
+        this.hoverCapable = window.matchMedia("(hover: hover)").matches;
+      } catch {
+        this.hoverCapable = false;
+      }
+    }
+    return this.hoverCapable;
   }
 }

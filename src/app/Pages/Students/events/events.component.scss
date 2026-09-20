@@ -1,0 +1,92 @@
+.events-section {
+  padding: clamp(2rem, 4vw, 3.5rem) 0;
+  background-color: #f8f9fc;
+}
+
+/* Wide Videos Grid (16:9 Landscape) */
+.wide-videos-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1rem, 2vw, 1.75rem);
+}
+
+/* Portrait Videos Grid (9:16 Reels) */
+.portrait-videos-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(1rem, 2vw, 1.75rem);
+}
+
+/* Common Video Item Container */
+.video-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 14px;
+  background: #141324;
+  border: 1px solid rgba(41, 38, 82, 0.1);
+  box-shadow: 0 6px 18px rgba(35, 31, 78, 0.07);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.video-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(35, 31, 78, 0.14);
+}
+
+/* Wide Landscape Aspect Ratio */
+.wide-item {
+  aspect-ratio: 16 / 9;
+}
+
+/* Portrait Reels Aspect Ratio */
+.portrait-item {
+  aspect-ratio: 9 / 16;
+}
+
+/* Video Elements */
+.video-element {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 13px;
+  background: #000;
+}
+
+/* Iframe Elements */
+.iframe-element {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: 13px;
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 1199.98px) {
+  .portrait-videos-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 991.98px) {
+  .wide-videos-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .portrait-videos-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 575.98px) {
+  .wide-videos-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .portrait-videos-grid {
+    grid-template-columns: 1fr;
+    max-width: 340px;
+    margin: 0 auto;
+  }
+}

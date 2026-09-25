@@ -44,8 +44,6 @@
               "src/assets/Files/Pricing",
               "src/assets/Files/Policies",
               "src/assets/Files/ReadingChallenge",
-              "src/assets/Files/Schedule/MOE",
-              "src/assets/Files/Schedule/AME",
               "src/assets/Files/Videos",
               "src/assets/Files/Videos/National ID",
               "src/assets/Files/Videos/National ID/الثقافة/التاريخ",
@@ -61,6 +59,9 @@
                 "glob": "**/*",
                 "input": "public"
               }
+            ],
+            "allowedCommonJsDependencies": [
+              "glightbox"
             ],
             "styles": [
               "assets/css/main.css",
@@ -137,8 +138,6 @@
               "src/assets/Files/Pricing",
               "src/assets/Files/Policies",
               "src/assets/Files/ReadingChallenge",
-              "src/assets/Files/Schedule/MOE",
-              "src/assets/Files/Schedule/AME",
               "src/assets/Files/Videos",
               "src/assets/Files/Videos/National ID",
               "src/assets/Files/Videos/National ID/الثقافة/التاريخ",
@@ -154,6 +153,9 @@
                 "glob": "**/*",
                 "input": "public"
               }
+            ],
+            "allowedCommonJsDependencies": [
+              "glightbox"
             ],
             "styles": [
               "assets/css/main.css",

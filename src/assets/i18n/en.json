@@ -166,7 +166,12 @@
       "grade_11": "Grade 11",
       "grade_12": "Grade 12",
       "boys": "(Boys)",
-      "girls": "(Girls)"
+      "girls": "(Girls)",
+      "section_a": "Section A",
+      "section_b": "Section B",
+      "section_c": "Section C",
+      "section_g": "Section G",
+      "hint": "Select any schedule to open it full screen."
     },
     "events": {
       "title": "Events & Activities",
